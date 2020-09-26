@@ -27,30 +27,32 @@ export const List = styled.ul`
   ${navItemsFlexStyles};
 `;
 
-
 const enterBackground = keyframes`to {opacity: 1}`;
 const enterBackgroundMixin = css`
-opacity: 0;
-animation: ${enterBackground} 700ms ease forwards;
-`
+  opacity: 0;
+  animation: ${enterBackground} 700ms ease forwards;
+`;
 const leaveBackground = keyframes`to {opacity:0}`;
 const leaveBackgroundMixin = css`
-opacity: 1;
-animation: ${leaveBackground} 700ms ease forwards;
-`
+  opacity: 1;
+  animation: ${leaveBackground} 700ms ease forwards;
+`;
 export const Background = styled.div`
- position: fixed;
+  position: fixed;
   margin: 0;
   padding: 0;
   display: flex;
-  opacity:0;
+  opacity: 0;
   ${navItemsFlexStyles};
   ${wrapperDims};
-  ${({withBackground}) => withBackground ? enterBackgroundMixin : leaveBackgroundMixin};
-`
+  ${({ withBackground }) =>
+    withBackground ? enterBackgroundMixin : leaveBackgroundMixin};
+  background: linear-gradient(to top, rgba(86, 20, 238, 0.5) 100%, transparent),
+    ${({backgroundImage}) => css`url(${backgroundImage})`} center center/cover no-repeat fixed;
+`;
 
 export const MenuItem = styled.li`
-z-index: 1;
+  z-index: 1;
   ${navItemsFlexStyles};
   margin: 1rem;
   font-weight: bold;

@@ -4,11 +4,11 @@ dependencies:
   '@fortawesome/free-solid-svg-icons': 5.14.0
   '@fortawesome/react-fontawesome': 0.1.11_5fd28985a220cda149fda67f0cfb6994
   css.escape: 1.5.1
-  next: 9.5.3_b64c5b009f74cdcf964dbb949a1d9ffa
+  next: 9.5.3_react-dom@16.13.1
   next-seo: 4.7.3_next@9.5.3+react-dom@16.13.1
-  node-sass: /sass/1.26.10
   react: 16.13.1
   react-dom: 16.13.1
+  react-helmet: 6.1.0
   react-redux: 7.2.1_react-dom@16.13.1+redux@4.0.5
   react-transition-group: 4.4.1_react-dom@16.13.1
   redux: 4.0.5
@@ -1497,6 +1497,7 @@ packages:
     dev: false
     engines:
       node: '>= 8'
+    optional: true
     resolution:
       integrity: sha512-mM8522psRCqzV+6LhomX5wgp25YVibjh8Wj23I5RPkPppSVSjyKD2A2mBJmWGa+KN7f2D6LNh9jkBCeyLktzjg==
   /aproba/1.2.0:
@@ -1647,6 +1648,7 @@ packages:
     dev: false
     engines:
       node: '>=8'
+    optional: true
     resolution:
       integrity: sha512-1Yj8h9Q+QDF5FzhMs/c9+6UntbD5MkRfRwac8DoEm9ZfUBZ7tZ55YcGVAzEe4bXsdQHEk+s9S5wsOKVdZrw0tQ==
   /bindings/1.5.0:
@@ -1698,6 +1700,7 @@ packages:
     dev: false
     engines:
       node: '>=8'
+    optional: true
     resolution:
       integrity: sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==
   /brorand/1.1.0:
@@ -1941,6 +1944,7 @@ packages:
     dev: false
     engines:
       node: '>= 8.10.0'
+    optional: true
     optionalDependencies:
       fsevents: 2.1.3
     resolution:
@@ -2616,6 +2620,7 @@ packages:
     dev: false
     engines:
       node: '>=8'
+    optional: true
     resolution:
       integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==
   /find-cache-dir/2.1.0:
@@ -2750,6 +2755,7 @@ packages:
     dev: false
     engines:
       node: '>= 6'
+    optional: true
     resolution:
       integrity: sha512-FnI+VGOpnlGHWZxthPGR+QhR78fuiK0sNLkHQv+bL9fQi57lNNdquIbna/WrfROrolq8GK5Ek6BiMwqL/voRYQ==
   /glob-to-regexp/0.4.1:
@@ -2979,6 +2985,7 @@ packages:
     dev: false
     engines:
       node: '>=8'
+    optional: true
     resolution:
       integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==
   /is-buffer/1.1.6:
@@ -3069,6 +3076,7 @@ packages:
     dev: false
     engines:
       node: '>=0.12.0'
+    optional: true
     resolution:
       integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
   /is-plain-object/2.0.4:
@@ -3518,7 +3526,7 @@ packages:
       integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
   /next-seo/4.7.3_next@9.5.3+react-dom@16.13.1:
     dependencies:
-      next: 9.5.3_b64c5b009f74cdcf964dbb949a1d9ffa
+      next: 9.5.3_react-dom@16.13.1
       react-dom: 16.13.1
     dev: false
     peerDependencies:
@@ -3530,7 +3538,7 @@ packages:
     dev: false
     resolution:
       integrity: sha1-yobR/ogoFpsBICCOPchCS524NCw=
-  /next/9.5.3_b64c5b009f74cdcf964dbb949a1d9ffa:
+  /next/9.5.3_react-dom@16.13.1:
     dependencies:
       '@ampproject/toolbox-optimizer': 2.6.0
       '@babel/code-frame': 7.10.4
@@ -3581,7 +3589,7 @@ packages:
       react-is: 16.13.1
       react-refresh: 0.8.3
       resolve-url-loader: 3.1.1
-      sass-loader: 8.0.2_node-sass@1.26.10+webpack@4.44.1
+      sass-loader: 8.0.2_webpack@4.44.1
       schema-utils: 2.6.6
       stream-browserify: 3.0.0
       style-loader: 1.2.1_webpack@4.44.1
@@ -3597,7 +3605,6 @@ packages:
       node: '>=10.13.0'
     hasBin: true
     peerDependencies:
-      node-sass: '*'
       react-dom: ^16.6.0
     resolution:
       integrity: sha512-DGrpTNGV2RNMwLaSzpgbkbaUuVk30X71/roXHS10isSXo2Gm+qWcjonDyOxf1KmOvHZRHA/Fa+LaAR7ysdYS3A==
@@ -3846,6 +3853,7 @@ packages:
     dev: false
     engines:
       node: '>=8.6'
+    optional: true
     resolution:
       integrity: sha512-q0M/9eZHzmr0AulXyPwNfZjtwZ/RBZlbN3K3CErVrk50T2ASYI7Bye0EvekFY3IP1Nt2DHu0re+V2ZHIpMkuWg==
   /pify/4.0.1:
@@ -4072,6 +4080,19 @@ packages:
     dev: false
     resolution:
       integrity: sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
+  /react-fast-compare/3.2.0:
+    dev: false
+    resolution:
+      integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
+  /react-helmet/6.1.0:
+    dependencies:
+      object-assign: 4.1.1
+      prop-types: 15.7.2
+      react-fast-compare: 3.2.0
+      react-side-effect: 2.1.0
+    dev: false
+    resolution:
+      integrity: sha512-4uMzEY9nlDlgxr61NL3XbKRy1hEkXmKNXhjbAIOVw5vcFrsdYbH2FEwcNyWvWinl103nXgzYNlns9ca+8kFiWw==
   /react-is/16.13.1:
     dev: false
     resolution:
@@ -4103,6 +4124,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
+  /react-side-effect/2.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-IgmcegOSi5SNX+2Snh1vqmF0Vg/CbkycU9XZbOHJlZ6kMzTmi3yc254oB1WCkgA7OQtIAoLmcSFuHTc/tlcqXg==
   /react-transition-group/4.4.1_react-dom@16.13.1:
     dependencies:
       '@babel/runtime': 7.11.2
@@ -4163,6 +4188,7 @@ packages:
     dev: false
     engines:
       node: '>=8.10.0'
+    optional: true
     resolution:
       integrity: sha512-0xe001vZBnJEK+uKcj8qOhyAKPzIT+gStxWr3LCB0DwcXR5NZJ3IaC+yGnHCYzB/S7ov3m3EEbZI2zeNvX+hGQ==
   /redux-devtools-extension/2.13.8_redux@4.0.5:
@@ -4342,12 +4368,11 @@ packages:
     dev: false
     resolution:
       integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
-  /sass-loader/8.0.2_node-sass@1.26.10+webpack@4.44.1:
+  /sass-loader/8.0.2_webpack@4.44.1:
     dependencies:
       clone-deep: 4.0.1
       loader-utils: 1.4.0
       neo-async: 2.6.1
-      node-sass: /sass/1.26.10
       schema-utils: 2.6.6
       semver: 6.3.0
       webpack: 4.44.1_webpack@4.44.1
@@ -4368,15 +4393,6 @@ packages:
         optional: true
     resolution:
       integrity: sha512-7o4dbSK8/Ol2KflEmSco4jTjQoV988bM82P9CZdmo9hR3RLnvNc0ufMNdMrB0caq38JQ/FgF4/7RcbcfKzxoFQ==
-  /sass/1.26.10:
-    dependencies:
-      chokidar: 3.4.2
-    dev: false
-    engines:
-      node: '>=8.9.0'
-    hasBin: true
-    resolution:
-      integrity: sha512-bzN0uvmzfsTvjz0qwccN1sPm2HxxpNI/Xa+7PlUEMS+nQvbyuEK7Y0qFqxlPHhiNHb1Ze8WQJtU31olMObkAMw==
   /scheduler/0.19.1:
     dependencies:
       loose-envify: 1.4.0
@@ -4819,6 +4835,7 @@ packages:
     dev: false
     engines:
       node: '>=8.0'
+    optional: true
     resolution:
       integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   /to-regex/3.0.2:
@@ -5125,9 +5142,9 @@ specifiers:
   css.escape: ^1.5.1
   next: ^9.5.3
   next-seo: ^4.7.3
-  node-sass: 'npm:sass@^1.26.10'
   react: ^16.13.1
   react-dom: ^16.13.1
+  react-helmet: ^6.1.0
   react-redux: ^7.2.1
   react-transition-group: ^4.4.1
   redux: ^4.0.5

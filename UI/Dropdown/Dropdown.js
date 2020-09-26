@@ -71,10 +71,7 @@ const Dropdown = ({
       />
       <Background
         withBackground={backgroundImage === item.background}
-        style={{
-          background: `linear-gradient(to top, rgba(86, 20, 238, 0.5) 100%, transparent), 
-          url(${item.background}) center center/cover no-repeat fixed`
-        }}
+        backgroundImage={item.background}
       />
     </Fragment>
   ));

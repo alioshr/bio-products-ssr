@@ -3,10 +3,9 @@ import React from 'react'
 import {Provider} from 'react-redux'
 import {useStore} from '../store/store'
 import Layout from '../Components/HOC/Layout'
+import {Helmet} from 'react-helmet'
 
 const GlobalStyle = createGlobalStyle`
-
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
 
 html, body, #root {
   height: 100%;
@@ -37,6 +36,9 @@ function App({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState)
   return (
     <Provider store={store}>
+      <Helmet>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap"/>
+      </Helmet>
       <Layout>
       <Component {...pageProps} />
       </Layout>
