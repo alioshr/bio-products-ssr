@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useScrollPosition } from "../../Hooks/useScrollPosition";
 import { Transition } from "react-transition-group";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,7 +29,8 @@ const Dropdown = ({
   showDropDown,
   subItems,
 }) => {
-  const [backgroundImage, setBackgroundImage] = useState(false);
+  const [allowBackground, setAllowBackground] = useState(false);
+  const [backgroundToggledLink, setBackgroundToggledLink] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
   useScrollPosition(
@@ -41,7 +42,6 @@ const Dropdown = ({
     false,
     0
   );
-  console.log(showDropDown);
   //this is to avoid top scrolling when entering/leaving the dropdown
   useEffect(() => {
     document.body.style.position = "";
@@ -50,19 +50,22 @@ const Dropdown = ({
     if (showDropDown) {
       document.body.style.position = "fixed";
       document.body.style.top = `${scrollY}px`;
+      //this piece of state is to avoid the background appearance while the menu opens
+      setTimeout(() => {setAllowBackground(true)}, [550])
     }
+    return () => setAllowBackground(false) //cleanUp on unmount
   }, [showDropDown]);
 
   const navItemMouseEnter = (path) => {
-    setBackgroundImage(path);
+    setBackgroundToggledLink(path);
   };
 
   const navItemMouseLeave = () => {
-    setBackgroundImage(false);
+    setBackgroundToggledLink(false);
   };
 
   const navItems = subItems.map((item) => (
-    <Fragment>
+    <React.Fragment key={item.id}>
       <NavItem
         path={item.path}
         label={item.label}
@@ -70,16 +73,20 @@ const Dropdown = ({
         mouseLeft={navItemMouseLeave}
       />
       <Background
-        withBackground={backgroundImage === item.background}
-        backgroundImage={item.background}
+        showBackground={backgroundToggledLink === item.background}
+        backgroundImage={allowBackground && item.background}
       />
-    </Fragment>
+    </React.Fragment>
   ));
 
   return (
-    <Wrapper withBackground={backgroundImage}>
-      <List>{navItems}</List>
-    </Wrapper>
+    <Transition in={showDropDown} timeout={500} mountOnEnter unmountOnExit>
+      {(state) => (
+        <Wrapper state={state} withBackground={backgroundToggledLink}>
+          <List>{navItems}</List>
+        </Wrapper>
+      )}
+    </Transition>
   );
 };
 export default Dropdown;
