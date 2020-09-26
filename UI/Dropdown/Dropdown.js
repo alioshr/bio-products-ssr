@@ -21,16 +21,53 @@ const NavItem = ({ path, label, mouseEntered, mouseLeft }) => {
   );
 };
 
+const ToolbarNav = ({ subItems }) => {
+  const [allowBackground, setAllowBackground] = useState(false);
+  const [backgroundToggledLink, setBackgroundToggledLink] = useState(false);
+  useEffect(() => {
+    //this piece of state is to avoid the background appearance while the menu opens
+    setTimeout(() => {
+      setAllowBackground(true);
+    }, [550]);
+    return () => setAllowBackground(false) //cleanUp on unmount
+  }, []);
+
+  const navItemMouseEnter = (path) => {
+    setBackgroundToggledLink(path);
+  };
+
+  const navItemMouseLeave = () => {
+    setBackgroundToggledLink(false);
+  };
+
+  const navItems = subItems.map((item) => (
+    <React.Fragment key={item.id}>
+      <NavItem
+        path={item.path}
+        label={item.label}
+        mouseEntered={() => navItemMouseEnter(item.background)}
+        mouseLeft={navItemMouseLeave}
+      />
+      {window.innerWidth >= 640 && (
+        <Background
+        showBackground={backgroundToggledLink === item.background}
+        backgroundImage={allowBackground && item.background}
+      />
+      )}
+    </React.Fragment>
+  ));
+
+  return navItems;
+};
+
 const Dropdown = ({
   dropDownTitle,
   subCategoryHandler,
-  useOnToolbar,
   dropDownTogglerHandler,
+  useOnToolbar,
   showDropDown,
   subItems,
 }) => {
-  const [allowBackground, setAllowBackground] = useState(false);
-  const [backgroundToggledLink, setBackgroundToggledLink] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
   useScrollPosition(
@@ -50,40 +87,16 @@ const Dropdown = ({
     if (showDropDown) {
       document.body.style.position = "fixed";
       document.body.style.top = `${scrollY}px`;
-      //this piece of state is to avoid the background appearance while the menu opens
-      setTimeout(() => {setAllowBackground(true)}, [550])
     }
-    return () => setAllowBackground(false) //cleanUp on unmount
   }, [showDropDown]);
-
-  const navItemMouseEnter = (path) => {
-    setBackgroundToggledLink(path);
-  };
-
-  const navItemMouseLeave = () => {
-    setBackgroundToggledLink(false);
-  };
-
-  const navItems = subItems.map((item) => (
-    <React.Fragment key={item.id}>
-      <NavItem
-        path={item.path}
-        label={item.label}
-        mouseEntered={() => navItemMouseEnter(item.background)}
-        mouseLeft={navItemMouseLeave}
-      />
-      <Background
-        showBackground={backgroundToggledLink === item.background}
-        backgroundImage={allowBackground && item.background}
-      />
-    </React.Fragment>
-  ));
 
   return (
     <Transition in={showDropDown} timeout={500} mountOnEnter unmountOnExit>
       {(state) => (
-        <Wrapper state={state} withBackground={backgroundToggledLink}>
-          <List>{navItems}</List>
+        <Wrapper state={state}>
+          <List>
+          {useOnToolbar && <ToolbarNav subItems={subItems} />}
+          </List>
         </Wrapper>
       )}
     </Transition>

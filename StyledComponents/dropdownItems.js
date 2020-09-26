@@ -40,7 +40,6 @@ export const List = styled.ul`
   ${wrapperDims};
   margin: 0;
   padding: 0;
-  display: flex;
   ${navItemsFlexStyles};
 `;
 
@@ -58,7 +57,6 @@ export const Background = styled.div`
   position: fixed;
   margin: 0;
   padding: 0;
-  display: flex;
   opacity: 0;
   ${navItemsFlexStyles};
   ${wrapperDims};

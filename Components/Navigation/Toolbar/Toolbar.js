@@ -55,19 +55,25 @@ const Toolbar = ({ visible }) => {
   useEffect(() => {
     setGlobalWindow(window);
   }, []);
-
+  
   let topIconStyle = !visible ? { top: "-10vh" } : { bottom: "1rem" };
   let bottomIconStyle = !visible ? { bottom: "-10vh" } : { bottom: "1rem" };
-  
+
   return (
     <Fragment>
-      <NavigationPanel tabIndex="0" active={navItemsActive} style={topIconStyle}>
+      {/* <NavigationPanel> for desktop only */}
+      <NavigationPanel
+        tabIndex="0"
+        active={navItemsActive}
+        style={topIconStyle}
+      >
         <ProductLogo />
         <HamburgerButton
           active={navItemsActive}
           toggleNavItems={() => dispatch(useShowNavigationItems())}
         />
       </NavigationPanel>
+      {/* <HBWr> & <LogoWr> for mobile only */}
       <HBWr
         active={navItemsActive}
         style={bottomIconStyle}
@@ -78,10 +84,15 @@ const Toolbar = ({ visible }) => {
       <LogoWr active={navItemsActive} style={topIconStyle}>
         <ProductLogo />
       </LogoWr>
+      {/* <ShoppingCart> & <Dropdown> for any size device */}
       <ShoppingCart
         style={globalWindow?.innerWidth < 640 ? bottomIconStyle : topIconStyle}
       />
-      <Dropdown subItems={navItems} showDropDown={navItemsActive} useOnToolbar/>
+      <Dropdown
+        subItems={navItems}
+        showDropDown={navItemsActive}
+        useOnToolbar
+      />
     </Fragment>
   );
 };
