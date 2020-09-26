@@ -60,7 +60,10 @@ export const HBWr = styled.div`
     `}
 `;
 
-export const HBInnerWr = styled.div`
+export const HBInnerWr = styled.button`
+  outline: none;
+  background-color: transparent;
+  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

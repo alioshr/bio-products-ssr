@@ -15,6 +15,7 @@ import { Bee } from "../../../public/Icon/Icon";
 import Link from "next/link";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Dropdown from "../../../UI/Dropdown/Dropdown";
 
 const HamburgerButton = ({ active, toggleNavItems }) => {
   return (
@@ -50,19 +51,17 @@ const Toolbar = ({ visible }) => {
   const dispatch = useDispatch();
   const navItemsActive = useSelector((state) => state.navigation.showNavItems);
   const navItems = useSelector((state) => state.navigation.navItems);
-  console.log(navItemsActive);
+
   useEffect(() => {
     setGlobalWindow(window);
   }, []);
 
-  let toolbarIconHidden = { top: "-10vh" };
-  let toolbarIconShow = { bottom: "1rem" };
   let topIconStyle = !visible ? { top: "-10vh" } : { bottom: "1rem" };
   let bottomIconStyle = !visible ? { bottom: "-10vh" } : { bottom: "1rem" };
-  const iconStyles = !visible ? toolbarIconHidden : toolbarIconShow;
+  
   return (
     <Fragment>
-      <NavigationPanel active={navItemsActive} style={iconStyles}>
+      <NavigationPanel tabIndex="0" active={navItemsActive} style={topIconStyle}>
         <ProductLogo />
         <HamburgerButton
           active={navItemsActive}
@@ -76,12 +75,13 @@ const Toolbar = ({ visible }) => {
       >
         <HamburgerButton />
       </HBWr>
-      <LogoWr active={navItemsActive} style={iconStyles}>
+      <LogoWr active={navItemsActive} style={topIconStyle}>
         <ProductLogo />
       </LogoWr>
       <ShoppingCart
         style={globalWindow?.innerWidth < 640 ? bottomIconStyle : topIconStyle}
       />
+      <Dropdown subItems={navItems} showDropDown={navItemsActive} useOnToolbar/>
     </Fragment>
   );
 };

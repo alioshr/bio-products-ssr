@@ -26,7 +26,7 @@ const initialState = {
       id: "faq",
       label: "FAQ",
       path: "/faq",
-      background: '/NavigationItems/Faq.faq.jpg'
+      background: '/NavigationItems/Faq/faq.jpg'
      }
   ]
 };

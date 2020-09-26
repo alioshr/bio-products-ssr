@@ -6,6 +6,8 @@ import Layout from '../Components/HOC/Layout'
 
 const GlobalStyle = createGlobalStyle`
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
+
 html, body, #root {
   height: 100%;
 }
@@ -18,6 +20,11 @@ html, body, #root {
 
 body {
     margin: 0;
+    font-family: 'Roboto Condensed',  serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 button {
