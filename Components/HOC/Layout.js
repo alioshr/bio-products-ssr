@@ -6,13 +6,12 @@ import {Wrapper} from '../../StyledComponents/layoutItems'
 
 const Layout = (props) => {
   const [visible, setVisible] = useState(true);
-
   useScrollPosition(
     ({ prevPos, currPos }) => {
-      const isShow = currPos.y > prevPos.y;
+      const isShow = currPos.y >= prevPos.y;
       if (isShow !== visible) setVisible(isShow);
     },
-    [ visible],
+    [visible],
     false,
     false,
     150
@@ -20,7 +19,7 @@ const Layout = (props) => {
   
   return (
     <Wrapper>
-      <Toolbar visible={visible}  />
+      <Toolbar visible={visible} />
       <main>{props.children}</main>
       <Footer />
     </Wrapper>

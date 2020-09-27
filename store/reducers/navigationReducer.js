@@ -39,9 +39,7 @@ const toggleSideDrawer = (state, action) => {
 
 export const navigationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.SHOW_NAVIGATION_ITEMS:
-      return toggleSideDrawer(state, action);
-    default:
-      return state;
+    case actions.SHOW_NAVIGATION_ITEMS: return toggleSideDrawer(state, action);
+    default: return state;
   }
 };

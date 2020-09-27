@@ -26,8 +26,9 @@ const dropDownExitMixin = css`
 transform: translateY(0);
 animation: ${hideDropdown} 500ms ease-in forwards;
 `
-export const Wrapper = styled.div`
+export const Nav = styled.nav`
   position: fixed;
+  top: 0;
   background: rgba(86, 20, 238, 1);
   ${wrapperDims};
   ${navItemsFlexStyles};

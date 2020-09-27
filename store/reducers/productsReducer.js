@@ -8,7 +8,6 @@
 import * as actions from '../actions/productsActions'
 
 const initialState = {
-  test: 1,
   activeProductSection: '',
   overview: {
     bioCloths: {

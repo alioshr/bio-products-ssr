@@ -5,12 +5,61 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import {
-  Wrapper,
+  Nav,
   List,
   MenuItem,
   Background,
 } from "../../StyledComponents/dropdownItems";
 
+//dropdown
+const Dropdown = ({
+  dropDownTitle,
+  subCategoryHandler,
+  dropDownTogglerHandler,
+  useOnToolbar,
+  showDropDown,
+  subItems,
+}) => {
+  const [scrollY, setScrollY] = useState(0);
+  useScrollPosition(
+    ({ currPos }) => {
+      setScrollY(currPos.y);
+    },
+    [showDropDown],
+    false,
+    false,
+    0
+  );
+  //this is to avoid top scrolling when entering/leaving the dropdown
+  useEffect(() => {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    window.scrollTo(scrollY, scrollY * -1);
+    if (showDropDown) {
+      document.body.style.position = "fixed";
+      document.body.style.top = `${scrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+    }
+  }, [showDropDown]);
+
+  return (
+    <Transition in={showDropDown} timeout={500} mountOnEnter unmountOnExit>
+      {(state) => (
+        <Nav state={state} onClick={dropDownTogglerHandler}>
+          <List>
+          {useOnToolbar && <ToolbarNav subItems={subItems} showDropDown={showDropDown}/>}
+          </List>
+        </Nav>
+      )}
+    </Transition>
+  );
+};
+export default Dropdown;
+
+//main navItem
 const NavItem = ({ path, label, mouseEntered, mouseLeft }) => {
   return (
     <MenuItem onMouseLeave={mouseLeft} onMouseEnter={mouseEntered}>
@@ -21,7 +70,8 @@ const NavItem = ({ path, label, mouseEntered, mouseLeft }) => {
   );
 };
 
-const ToolbarNav = ({ subItems }) => {
+//navigation for the toolbar
+const ToolbarNav = ({ subItems, showDropDown }) => {
   const [allowBackground, setAllowBackground] = useState(false);
   const [backgroundToggledLink, setBackgroundToggledLink] = useState(false);
   useEffect(() => {
@@ -29,8 +79,12 @@ const ToolbarNav = ({ subItems }) => {
     setTimeout(() => {
       setAllowBackground(true);
     }, [550]);
-    return () => setAllowBackground(false) //cleanUp on unmount
-  }, []);
+    //remove background images once the toolbar slides up for UI purposes as the mouse will hover those links
+    //the cleanup on unmount does not trigger on time, so I moved it before the component unmounts here
+    if(!showDropDown) {
+      setAllowBackground(false)
+    }
+  }, [showDropDown]);
 
   const navItemMouseEnter = (path) => {
     setBackgroundToggledLink(path);
@@ -59,47 +113,3 @@ const ToolbarNav = ({ subItems }) => {
 
   return navItems;
 };
-
-const Dropdown = ({
-  dropDownTitle,
-  subCategoryHandler,
-  dropDownTogglerHandler,
-  useOnToolbar,
-  showDropDown,
-  subItems,
-}) => {
-  const [scrollY, setScrollY] = useState(0);
-
-  useScrollPosition(
-    ({ currPos }) => {
-      setScrollY(currPos.y);
-    },
-    [showDropDown],
-    false,
-    false,
-    0
-  );
-  //this is to avoid top scrolling when entering/leaving the dropdown
-  useEffect(() => {
-    document.body.style.position = "";
-    document.body.style.top = "";
-    window.scrollTo(scrollY, scrollY * -1);
-    if (showDropDown) {
-      document.body.style.position = "fixed";
-      document.body.style.top = `${scrollY}px`;
-    }
-  }, [showDropDown]);
-
-  return (
-    <Transition in={showDropDown} timeout={500} mountOnEnter unmountOnExit>
-      {(state) => (
-        <Wrapper state={state}>
-          <List>
-          {useOnToolbar && <ToolbarNav subItems={subItems} />}
-          </List>
-        </Wrapper>
-      )}
-    </Transition>
-  );
-};
-export default Dropdown;

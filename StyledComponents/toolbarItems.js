@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import { toolBarMixin, hamburgerSpanActive } from "./Library/mixins";
 import { mainColors } from "./Library/variables";
 
+
+
 export const NavigationPanel = styled.div`
   display: none;
   @media (min-width: 40rem) {
@@ -13,7 +15,6 @@ export const NavigationPanel = styled.div`
     align-items: center;
     background-color: #fdf3e6;
     border-radius: 35px;
-    z-index: 35;
     transition: all 500ms ease-in;
 
     &:hover {
@@ -48,7 +49,6 @@ export const HBWr = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 35;
   @media (min-width: 40rem) {
     display: none;
   }
@@ -93,11 +93,9 @@ export const LogoWr = styled.div`
   height: 3.2rem;
   border-radius: 50%;
   background-color: #fdf3e6;
-  z-index: 35;
   display: flex;
   justify-content: center;
   align-items: center;
-
   ${({ active }) =>
     active === true &&
     css`
@@ -106,7 +104,6 @@ export const LogoWr = styled.div`
         fill: white;
       }
     `}
-
   @media (min-width: 40rem) {
     display: none;
   }
@@ -119,7 +116,6 @@ export const Logo = styled.li`
     width: 44px;
     height: 42px;
   }
-
   @media (min-width: 40rem) {
     &,
     a {
@@ -135,6 +131,8 @@ export const Logo = styled.li`
 `;
 
 export const Cart = styled.div`
+  ${toolBarMixin(null, null, 1, 2)};
+  z-index: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,18 +141,16 @@ export const Cart = styled.div`
   color: #fdf3e6;
   height: 4rem;
   justify-content: center;
-
   & path {
     font-size: 2.5rem;
   }
-  ${toolBarMixin(null, null, 1, 2)};
-
   @media (min-width: 40rem) {
     height: 2rem;
     & svg {
       font-size: 3.2rem;
     }
     ${toolBarMixin(2, null, 1, null)}
+    z-index: 0;
     :hover {
       color: purple;
     }

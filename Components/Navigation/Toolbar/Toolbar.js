@@ -17,6 +17,78 @@ import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dropdown from "../../../UI/Dropdown/Dropdown";
 
+const Toolbar = ({ visible }) => {
+  const dispatch = useDispatch();
+  const [globalWindow, setGlobalWindow] = useState(null);
+  const navItemsActive = useSelector((state) => state.navigation.showNavItems);
+  const navItems = useSelector((state) => state.navigation.navItems);
+
+  useEffect(() => {
+    setGlobalWindow(window);
+  }, []);
+
+  let topIconStyle = !visible ? { top: "-10vh" } : { top: "1rem" };
+  let bottomIconStyle = !visible ? { bottom: "-10vh" } : { bottom: "1rem" };
+  const onMobileScreen = globalWindow?.innerWidth < 640;
+
+  return (
+    <Fragment>
+      {/* <NavigationPanel> for desktop only */}
+      <NavigationPanel
+        tabIndex="0"
+        active={navItemsActive}
+        style={topIconStyle}
+      >
+        <ProductLogo />
+        <HamburgerButton
+          active={navItemsActive}
+          toggleNavItems={() => dispatch(useShowNavigationItems())}
+        />
+      </NavigationPanel>
+      {onMobileScreen && (
+        <MobileIcons
+          navItemsActive={navItemsActive}
+          bottomIconStyle={bottomIconStyle}
+          showNavItems={() => dispatch(useShowNavigationItems())}
+        />
+      )}
+      {/* <ShoppingCart> & <Dropdown> for any size device */}
+      <ShoppingCart
+        windowWidth={globalWindow?.innerWidth}
+        style={onMobileScreen ? bottomIconStyle : topIconStyle}
+      />
+      <Dropdown
+        dropDownTogglerHandler={() => dispatch(useShowNavigationItems())}
+        subItems={navItems}
+        showDropDown={navItemsActive}
+        useOnToolbar
+      />
+    </Fragment>
+  );
+};
+
+export default Toolbar;
+
+const MobileIcons = ({
+  navItemsActive,
+  bottomIconStyle,
+  topIconStyle,
+  showNavItems,
+}) => (
+  <Fragment>
+    <HBWr
+      active={navItemsActive}
+      style={bottomIconStyle}
+      onClick={showNavItems}
+    >
+      <HamburgerButton />
+    </HBWr>
+    <LogoWr active={navItemsActive} style={topIconStyle}>
+      <ProductLogo />
+    </LogoWr>
+  </Fragment>
+);
+
 const HamburgerButton = ({ active, toggleNavItems }) => {
   return (
     <HBInnerWr active={active} onClick={toggleNavItems}>
@@ -45,56 +117,3 @@ const ShoppingCart = ({ style }) => (
     </CartCounter>
   </Cart>
 );
-
-const Toolbar = ({ visible }) => {
-  const [globalWindow, setGlobalWindow] = useState(null);
-  const dispatch = useDispatch();
-  const navItemsActive = useSelector((state) => state.navigation.showNavItems);
-  const navItems = useSelector((state) => state.navigation.navItems);
-
-  useEffect(() => {
-    setGlobalWindow(window);
-  }, []);
-  
-  let topIconStyle = !visible ? { top: "-10vh" } : { bottom: "1rem" };
-  let bottomIconStyle = !visible ? { bottom: "-10vh" } : { bottom: "1rem" };
-
-  return (
-    <Fragment>
-      {/* <NavigationPanel> for desktop only */}
-      <NavigationPanel
-        tabIndex="0"
-        active={navItemsActive}
-        style={topIconStyle}
-      >
-        <ProductLogo />
-        <HamburgerButton
-          active={navItemsActive}
-          toggleNavItems={() => dispatch(useShowNavigationItems())}
-        />
-      </NavigationPanel>
-      {/* <HBWr> & <LogoWr> for mobile only */}
-      <HBWr
-        active={navItemsActive}
-        style={bottomIconStyle}
-        onClick={() => dispatch(useShowNavigationItems())}
-      >
-        <HamburgerButton />
-      </HBWr>
-      <LogoWr active={navItemsActive} style={topIconStyle}>
-        <ProductLogo />
-      </LogoWr>
-      {/* <ShoppingCart> & <Dropdown> for any size device */}
-      <ShoppingCart
-        style={globalWindow?.innerWidth < 640 ? bottomIconStyle : topIconStyle}
-      />
-      <Dropdown
-        subItems={navItems}
-        showDropDown={navItemsActive}
-        useOnToolbar
-      />
-    </Fragment>
-  );
-};
-
-export default Toolbar;
