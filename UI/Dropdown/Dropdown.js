@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useScrollPosition } from "../../Hooks/useScrollPosition";
 import { Transition } from "react-transition-group";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import SocialMedia from "../SocialMedia/SocialMedia";
 import {
+  TitleWrapper,
+  Title,
   Nav,
   List,
   MenuItem,
@@ -16,7 +19,7 @@ const Dropdown = ({
   dropDownTitle,
   subCategoryHandler,
   dropDownTogglerHandler,
-  useOnToolbar,
+  onProducts,
   showDropDown,
   subItems,
 }) => {
@@ -32,46 +35,48 @@ const Dropdown = ({
   );
   //this is to avoid top scrolling when entering/leaving the dropdown
   useEffect(() => {
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.left = "";
-    document.body.style.right = "";
+    const bodyStyle = document.body.style;
+    bodyStyle.position = "";
+    bodyStyle.top = "";
+    bodyStyle.left = "";
+    bodyStyle.right = "";
     window.scrollTo(scrollY, scrollY * -1);
     if (showDropDown) {
-      document.body.style.position = "fixed";
-      document.body.style.top = `${scrollY}px`;
-      document.body.style.left = "0";
-      document.body.style.right = "0";
+      bodyStyle.position = "fixed";
+      bodyStyle.top = `${scrollY}px`;
+      bodyStyle.left = "0";
+      bodyStyle.right = "0";
     }
   }, [showDropDown]);
 
   return (
-    <Transition in={showDropDown} timeout={500} mountOnEnter unmountOnExit>
-      {(state) => (
-        <Nav state={state} onClick={dropDownTogglerHandler}>
-          <List>
-          {useOnToolbar && <ToolbarNav subItems={subItems} showDropDown={showDropDown}/>}
-          </List>
-        </Nav>
+    <Fragment>
+      {onProducts && (
+        <TitleWrapper onClick={dropDownTogglerHandler}>
+          <Title>TITLE</Title>
+          <FontAwesomeIcon icon={faChevronDown} size="3x" />
+        </TitleWrapper>
       )}
-    </Transition>
+      <Transition in={showDropDown} timeout={500} mountOnEnter unmountOnExit>
+        {(state) => (
+          <Nav state={state} onClick={dropDownTogglerHandler} usedOnProducts={onProducts}>
+            <List>
+              <ToolbarNav
+                onProducts={onProducts}
+                subItems={subItems}
+                showDropDown={showDropDown}
+              />
+            </List>
+          </Nav>
+        )}
+      </Transition>
+    </Fragment>
   );
 };
 export default Dropdown;
 
-//main navItem
-const NavItem = ({ path, label, mouseEntered, mouseLeft }) => {
-  return (
-    <MenuItem onMouseLeave={mouseLeft} onMouseEnter={mouseEntered}>
-      <Link href={path}>
-        <a>{label}</a>
-      </Link>
-    </MenuItem>
-  );
-};
-
 //navigation for the toolbar
-const ToolbarNav = ({ subItems, showDropDown }) => {
+const ToolbarNav = ({ subItems, showDropDown, onProducts }) => {
   const [allowBackground, setAllowBackground] = useState(false);
   const [backgroundToggledLink, setBackgroundToggledLink] = useState(false);
   useEffect(() => {
@@ -81,8 +86,8 @@ const ToolbarNav = ({ subItems, showDropDown }) => {
     }, [550]);
     //remove background images once the toolbar slides up for UI purposes as the mouse will hover those links
     //the cleanup on unmount does not trigger on time, so I moved it before the component unmounts here
-    if(!showDropDown) {
-      setAllowBackground(false)
+    if (!showDropDown) {
+      setAllowBackground(false);
     }
   }, [showDropDown]);
 
@@ -97,19 +102,51 @@ const ToolbarNav = ({ subItems, showDropDown }) => {
   const navItems = subItems.map((item) => (
     <React.Fragment key={item.id}>
       <NavItem
+        onProducts={onProducts}
         path={item.path}
         label={item.label}
         mouseEntered={() => navItemMouseEnter(item.background)}
         mouseLeft={navItemMouseLeave}
       />
-      {window.innerWidth >= 640 && (
+      {window.innerWidth > 640 && (
         <Background
-        showBackground={backgroundToggledLink === item.background}
-        backgroundImage={allowBackground && item.background}
-      />
+          showBackground={backgroundToggledLink === item.background}
+          backgroundImage={allowBackground && item.background}
+        />
       )}
     </React.Fragment>
   ));
 
-  return navItems;
+  return (
+    <Fragment>
+      {navItems}
+      <SocialMedia iconSize="4x" pattern="menu" />
+    </Fragment>
+  );
+};
+
+//main navItem
+const NavItem = ({
+  path,
+  label,
+  mouseEntered,
+  mouseLeft,
+  onProducts,
+  chooseProduct,
+}) => {
+  let item = (
+    <Link href={path}>
+      <a>{label}</a>
+    </Link>
+  );
+  onProducts ? (item = <span>{label}</span>) : null;
+  return (
+    <MenuItem
+      onMouseLeave={mouseLeft}
+      onMouseEnter={mouseEntered}
+      onClick={chooseProduct}
+    >
+      {item}
+    </MenuItem>
+  );
 };

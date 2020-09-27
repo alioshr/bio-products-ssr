@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { toolBarMixin, hamburgerSpanActive } from "./Library/mixins";
-import { mainColors } from "./Library/variables";
+import { mainColors,zIndex } from "./Library/variables";
 
 
 
@@ -132,7 +132,7 @@ export const Logo = styled.li`
 
 export const Cart = styled.div`
   ${toolBarMixin(null, null, 1, 2)};
-  z-index: 0;
+  z-index: ${zIndex.cart};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -150,7 +150,7 @@ export const Cart = styled.div`
       font-size: 3.2rem;
     }
     ${toolBarMixin(2, null, 1, null)}
-    z-index: 0;
+    z-index: ${zIndex.cart};
     :hover {
       color: purple;
     }

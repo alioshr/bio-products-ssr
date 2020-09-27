@@ -1,19 +1,18 @@
-//these line items should be retrieved from firebase in the near future
-// import Cloth1 from "../../Content/Products/cloth1.jpg";
-// import Cloth2 from "../../Content/Products/cloth3.jpg";
-// import Cloth3 from "../../Content/Products/cloth4.jpg";
-// import Soap1 from "../../Content/Products/saboaria1.jpg";
-// import Soap2 from "../../Content/Products/saboaria2.jpg";
-// import Soap3 from "../../Content/Products/saboaria3.jpg";
 import * as actions from '../actions/productsActions'
+
+/* 
+Overview
+Label - Goes into the dropdpwn title
+
+*/
 
 const initialState = {
   activeProductSection: '',
   overview: {
     bioCloths: {
       label: "BIO EMBALAGENS",
-      avatar: 'Cloth3',
-      path: "bio-packs",
+      background: '/Products/Cloth3.jpg',
+      path: "bio-embalagens",
       products: {
         allSizes: {
           label: "MIX",
@@ -28,8 +27,8 @@ const initialState = {
     },
       soapWorks: {
         label: "SABOARIA",
-        avatar: 'Soap1',
-        path: "soap-works",
+        background: '/Products/saboaria1.jpg',
+        path: "saboaria",
         products: {
           ofuro: {
             label: "SAIS",

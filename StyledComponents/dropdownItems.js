@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import {mainColors} from './Library/variables'
+import { mainColors, zIndex } from "./Library/variables";
 
 const navItemsFlexStyles = css`
   display: flex;
@@ -17,15 +17,28 @@ const showDropdown = keyframes`
 to {transform: translateY(0)}
 `;
 const dropDownEnterMixin = css`
-animation: ${showDropdown} 500ms ease-in forwards;
+  animation: ${showDropdown} 500ms ease-in forwards;
 `;
 const hideDropdown = keyframes`
 to {transform: translateY(-100%)}
 `;
 const dropDownExitMixin = css`
-transform: translateY(0);
-animation: ${hideDropdown} 500ms ease-in forwards;
-`
+  transform: translateY(0);
+  animation: ${hideDropdown} 500ms ease-in forwards;
+`;
+export const TitleWrapper = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: transparent;
+`;
+
+export const Title = styled.span`
+  margin-right: 0.5rem;
+  font-size: 2rem;
+`;
+
 export const Nav = styled.nav`
   position: fixed;
   top: 0;
@@ -33,8 +46,14 @@ export const Nav = styled.nav`
   ${wrapperDims};
   ${navItemsFlexStyles};
   transform: translateY(-100%);
-  ${({state}) => state === "entering" || state === "entered" ? dropDownEnterMixin : 
-  state === "exiting" || state == "exited" ?  dropDownExitMixin : null};
+  z-index: ${({ usedOnProducts }) =>
+    usedOnProducts ? zIndex.productsDropdown : zIndex.NavDropdown};
+  ${({ state }) =>
+    state === "entering" || state === "entered"
+      ? dropDownEnterMixin
+      : state === "exiting" || state == "exited"
+      ? dropDownExitMixin
+      : null};
 `;
 
 export const List = styled.ul`
@@ -69,16 +88,37 @@ export const Background = styled.div`
 `;
 
 export const MenuItem = styled.li`
-  z-index: 1;
-  margin: 1rem;
+  z-index: ${zIndex.NavDropdown};
+  margin: 0.8rem;
   font-weight: bold;
   font-size: 2.9rem;
   ${navItemsFlexStyles};
-  &, a {width: 100vw;}
-  &:hover a {color: ${mainColors.accentOrange}}
-  a {
+  &,
+  a,
+  span {
+    width: 100vw;
+  }
+  &:hover a,
+  &:hover span {
+    color: ${mainColors.accentOrange};
+  }
+  a,
+  span {
     text-align: center;
     color: white;
-    padding: 2rem;
+    padding: 1.2rem;
+  }
+
+  span {
+    cursor: pointer;
+  }
+
+  @media (min-width: 40rem) {
+    margin: 1rem;
+    font-size: 2.9rem;
+    a,
+    span {
+      padding: 1.5rem;
+    }
   }
 `;

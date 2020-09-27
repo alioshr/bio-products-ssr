@@ -16,16 +16,13 @@ import Link from "next/link";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dropdown from "../../../UI/Dropdown/Dropdown";
+import {useClientWindow} from '../../../Hooks/useClientWindow';
 
 const Toolbar = ({ visible }) => {
   const dispatch = useDispatch();
-  const [globalWindow, setGlobalWindow] = useState(null);
+  const globalWindow = useClientWindow();
   const navItemsActive = useSelector((state) => state.navigation.showNavItems);
   const navItems = useSelector((state) => state.navigation.navItems);
-
-  useEffect(() => {
-    setGlobalWindow(window);
-  }, []);
 
   let topIconStyle = !visible ? { top: "-10vh" } : { top: "1rem" };
   let bottomIconStyle = !visible ? { bottom: "-10vh" } : { bottom: "1rem" };
@@ -33,18 +30,19 @@ const Toolbar = ({ visible }) => {
 
   return (
     <Fragment>
-      {/* <NavigationPanel> for desktop only */}
-      <NavigationPanel
-        tabIndex="0"
-        active={navItemsActive}
-        style={topIconStyle}
-      >
-        <ProductLogo />
-        <HamburgerButton
+      {!onMobileScreen && (
+        <NavigationPanel
+          tabIndex="0"
           active={navItemsActive}
-          toggleNavItems={() => dispatch(useShowNavigationItems())}
-        />
-      </NavigationPanel>
+          style={topIconStyle}
+        >
+          <ProductLogo />
+          <HamburgerButton
+            active={navItemsActive}
+            toggleNavItems={() => dispatch(useShowNavigationItems())}
+          />
+        </NavigationPanel>
+      )}
       {onMobileScreen && (
         <MobileIcons
           navItemsActive={navItemsActive}
@@ -66,7 +64,6 @@ const Toolbar = ({ visible }) => {
     </Fragment>
   );
 };
-
 export default Toolbar;
 
 const MobileIcons = ({

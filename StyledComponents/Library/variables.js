@@ -8,10 +8,10 @@ export const mainColors = {
 }
 
 export const zIndex = {
-  sideDrawer: 11,
+  NavDropdown: 11,
+  productsDropdown: 12,
   toolbar: 12,
+  cart: 10,
   backdrop: 10,
-  scrollUp: 12,
-  imgMarker: 12,
   modal: 100
 }

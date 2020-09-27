@@ -1,40 +1,15 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FooterWrapper, Copyright } from "../../StyledComponents/footerItems";
 import {
-  faTwitter,
-  faFacebook,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
-import {
-  FooterWrapper,
-  Copyright,
-  LinkWrapper,
   SocialMediaTitle,
-  SocialMediaWrapper,
-  Link,
-} from "../../StyledComponents/footerItems";
+} from "../../StyledComponents/socialMediaItems";
+import SocialMedia from '../../UI/SocialMedia/SocialMedia'
 
 const Footer = () => {
   return (
     <FooterWrapper>
       <SocialMediaTitle>Siga-nos</SocialMediaTitle>
-      <SocialMediaWrapper>
-        <LinkWrapper>
-          <Link>
-            <FontAwesomeIcon icon={faTwitter} size="2x" />
-          </Link>
-        </LinkWrapper>
-        <LinkWrapper>
-          <Link>
-            <FontAwesomeIcon icon={faFacebook} size="2x" />
-          </Link>
-        </LinkWrapper>
-        <LinkWrapper>
-          <Link>
-            <FontAwesomeIcon icon={faInstagram} size="2x" />
-          </Link>
-        </LinkWrapper>
-      </SocialMediaWrapper>
+      <SocialMedia pattern="footer" iconSize="2x"/>
       <Copyright>&copy;2020 OrganaFood</Copyright>
     </FooterWrapper>
   );

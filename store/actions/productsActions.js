@@ -1,23 +1,24 @@
-const INIT_PRODUCTS_OVERVIEW = "INIT_PRODUCTS_OVERVIEW";
+
+const PRODUCTS_OVERVIEW = "PRODUCTS_OVERVIEW";
 const LOAD_PRODUCTS_CATALOG = "LOAD_PRODUCTS_CATALOG";
 
-const prepInitProductsOverview = () => {
+const productsOverview = () => {
     return {
-        type: INIT_PRODUCTS_OVERVIEW
+        type: PRODUCTS_OVERVIEW
     }
 }
 //got to change this dummy thing for http requests when implement the database
-export const useInitProductsOverview = () => {
+export const useProductsOverview = () => {
     return (dispatch, store) => {
-        const overview = store().productsReducer.overview;
+        const overview = store().products.overview;
         const catalogOverview = [];
         for(let key in overview) {
             catalogOverview.push({
                 id: key,
-                config: overview[key]
+                ...overview[key]
             })
         }
-        dispatch(prepInitProductsOverview());
+        dispatch(productsOverview());
         return catalogOverview;
     }
 }
