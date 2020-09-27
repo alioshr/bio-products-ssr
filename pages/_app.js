@@ -28,6 +28,7 @@ body {
 
 button {
     border: none;
+    outline: none;
 }
 `;
 

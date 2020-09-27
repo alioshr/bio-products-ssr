@@ -1,8 +1,9 @@
 import React from "react";
+import {mainColors} from '../../StyledComponents/Library/variables'
 
 export const Bee = ({
   style = {},
-  fill = "#fe9600",
+  fill = mainColors.bodyBackground,
   width = "100%",
   className = "",
   height = "100%",

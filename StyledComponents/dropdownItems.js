@@ -32,6 +32,7 @@ export const TitleWrapper = styled.button`
   align-items: center;
   width: 100%;
   background-color: transparent;
+  cursor: pointer;
 `;
 
 export const Title = styled.span`

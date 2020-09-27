@@ -4,7 +4,8 @@ export const mainColors = {
   accentColor: 'white',
   neutral: "#000000cc",
   lightNeutral: "rgba(209, 209, 209, 0.8)",
-  accentOrange: '#f29b38'
+  accentOrange: '#f29b38',
+  bodyBackground: '#fdf3e6'
 }
 
 export const zIndex = {

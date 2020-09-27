@@ -13,7 +13,7 @@ export const NavigationPanel = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fdf3e6;
+    background-color: ${mainColors.accentOrange};
     border-radius: 35px;
     transition: all 500ms ease-in;
 
@@ -61,7 +61,6 @@ export const HBWr = styled.div`
 `;
 
 export const HBInnerWr = styled.button`
-  outline: none;
   background-color: transparent;
   padding: 0;
   display: flex;
@@ -82,7 +81,7 @@ export const HBInnerWr = styled.button`
 export const HBSpan = styled.span`
   width: 80%;
   height: 2px;
-  background-color: #f29b38;
+  background-color: ${mainColors.bodyBackground};
   border-radius: 10px;
   transition: all 0.5s ease-in-out;
 `;
@@ -138,7 +137,7 @@ export const Cart = styled.div`
   align-items: center;
   cursor: pointer;
   margin-right: 1rem;
-  color: #fdf3e6;
+  color: ${mainColors.accentOrange};
   height: 4rem;
   justify-content: center;
   & path {
@@ -161,8 +160,8 @@ export const CartCounter = styled.div`
   position: absolute;
   width: 1.5rem;
   height: 1.5rem;
-  background-color: #f29b38;
-  color: white;
+  background-color: ${mainColors.bodyBackground};
+  color: ${mainColors.accentOrange};
   border-radius: 50%;
   border: 1px solid burlywood;
   display: flex;

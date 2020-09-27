@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { useScrollPosition } from "../../Hooks/useScrollPosition";
+import { useLockBodyScroll } from "../../Hooks/useLockBodyScroll";
 import { Transition } from "react-transition-group";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -23,32 +23,7 @@ const Dropdown = ({
   showDropDown,
   subItems,
 }) => {
-  const [scrollY, setScrollY] = useState(0);
-  useScrollPosition(
-    ({ currPos }) => {
-      setScrollY(currPos.y);
-    },
-    [showDropDown],
-    false,
-    false,
-    0
-  );
-  //this is to avoid top scrolling when entering/leaving the dropdown
-  useEffect(() => {
-    const bodyStyle = document.body.style;
-    bodyStyle.position = "";
-    bodyStyle.top = "";
-    bodyStyle.left = "";
-    bodyStyle.right = "";
-    window.scrollTo(scrollY, scrollY * -1);
-    if (showDropDown) {
-      bodyStyle.position = "fixed";
-      bodyStyle.top = `${scrollY}px`;
-      bodyStyle.left = "0";
-      bodyStyle.right = "0";
-    }
-  }, [showDropDown]);
-
+  useLockBodyScroll(showDropDown);
   return (
     <Fragment>
       {onProducts && (
@@ -59,9 +34,13 @@ const Dropdown = ({
       )}
       <Transition in={showDropDown} timeout={500} mountOnEnter unmountOnExit>
         {(state) => (
-          <Nav state={state} onClick={dropDownTogglerHandler} usedOnProducts={onProducts}>
+          <Nav
+            state={state}
+            onClick={dropDownTogglerHandler}
+            usedOnProducts={onProducts}
+          >
             <List>
-              <ToolbarNav
+              <NavItems
                 onProducts={onProducts}
                 subItems={subItems}
                 showDropDown={showDropDown}
@@ -76,16 +55,15 @@ const Dropdown = ({
 export default Dropdown;
 
 //navigation for the toolbar
-const ToolbarNav = ({ subItems, showDropDown, onProducts }) => {
+const NavItems = ({ subItems, showDropDown, onProducts }) => {
   const [allowBackground, setAllowBackground] = useState(false);
   const [backgroundToggledLink, setBackgroundToggledLink] = useState(false);
+  //Avoid the background appearance on hover while the menu opens
   useEffect(() => {
-    //this piece of state is to avoid the background appearance while the menu opens
     setTimeout(() => {
       setAllowBackground(true);
     }, [550]);
-    //remove background images once the toolbar slides up for UI purposes as the mouse will hover those links
-    //the cleanup on unmount does not trigger on time, so I moved it before the component unmounts here
+    //Avoid the background appearance on hover while the menu opens
     if (!showDropDown) {
       setAllowBackground(false);
     }

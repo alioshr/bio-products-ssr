@@ -34,7 +34,10 @@ export const SocialMediaWrapper = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${({pattern}) => pattern === "menu" && css`z-index: 1`};
+  ${({pattern}) => pattern === "menu" && css`
+  z-index: 1;
+  margin-top: 5rem;
+  `};
 `;
 
 export const LinkWrapper = styled.li`
