@@ -5,6 +5,8 @@ import {
   CategoryTitle,
   CategoryWrapper,
   Title,
+  Panel,
+  Product
 } from "../../StyledComponents/productsItems";
 import Dropdown from "../../UI/Dropdown/Dropdown";
 import { useSelector, useDispatch } from "react-redux";
@@ -43,6 +45,7 @@ const Products = ({}) => {
         categories={activeCatalogCategories}
         toggleCategory={toggleCategoryHandler}
       />
+      <ProductPanel />
     </ProductsWrapper>
   );
 };
@@ -84,3 +87,18 @@ const Categories = ({ categories, toggleCategory, active }) => {
   ));
   return <CategoryWrapper fitDisplay={fitDevice}>{catTitles}</CategoryWrapper>;
 };
+
+const ProductPanel = ({}) => {
+  const test = [];
+  for(let i = 0; i < 10; i++) {
+    test.push(
+      <Product>Product</Product>
+    )
+  }
+  console.log(test)
+  return (
+    <Panel>
+      {test}
+    </Panel>
+  );
+}

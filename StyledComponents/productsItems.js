@@ -1,11 +1,16 @@
 import styled, {css, keyframes} from "styled-components";
 import { mainColors } from "./Library/variables";
 
+const productDims = {
+    height: '300px',
+    width: '300px'
+}
+
 export const ProductsWrapper = styled.section`
   background-color: ${mainColors.bodyBackground};
   width: 100vw;
-  height: 100vh;
-  padding-top: 2rem;
+  min-height: 100vh;
+  padding: 2rem;
 `;
 
 export const Title = styled.h1`
@@ -25,7 +30,6 @@ export const CategoryWrapper = styled.div`
 
 export const Category = styled.button`
   font-size: 1.3rem;
-  font-weight: bold;
   cursor: pointer;
   padding: 0.2rem 0.5rem;
   display: flex;
@@ -46,7 +50,6 @@ to {width: 110%}
 
 export const CategoryTitle = styled.span`
   width: auto;
-  font-weight: bold;
   position: relative;
   ${({ active }) =>
     active &&
@@ -64,3 +67,17 @@ export const CategoryTitle = styled.span`
   }
   `}
 `;
+
+export const Panel = styled.section`
+margin-top: 2rem;
+display: grid;
+grid-template-columns: repeat(auto-fill, ${productDims.width});
+grid-gap: 1rem;
+justify-content: center;
+`;
+
+export const Product = styled.div`
+width: ${productDims.width};
+height: ${productDims.height};
+border: 1px solid;
+`

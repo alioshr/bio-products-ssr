@@ -17,14 +17,14 @@ const showDropdown = keyframes`
 to {transform: translateY(0)}
 `;
 const dropDownEnterMixin = css`
-  animation: ${showDropdown} 500ms ease-in forwards;
+  animation: ${showDropdown} 400ms ease-in forwards;
 `;
 const hideDropdown = keyframes`
 to {transform: translateY(-100%)}
 `;
 const dropDownExitMixin = css`
   transform: translateY(0);
-  animation: ${hideDropdown} 500ms ease-in forwards;
+  animation: ${hideDropdown} 400ms ease-in forwards;
 `;
 export const TitleWrapper = styled.button`
   display: flex;
@@ -42,6 +42,9 @@ export const Title = styled.span`
 export const Nav = styled.nav`
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(86, 20, 238, 1);
   ${wrapperDims};
   ${navItemsFlexStyles};
