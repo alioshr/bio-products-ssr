@@ -31,7 +31,6 @@ export const TitleWrapper = styled.button`
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: transparent;
   cursor: pointer;
 `;
 
@@ -107,7 +106,7 @@ export const MenuItem = styled.li`
   span {
     text-align: center;
     color: white;
-    padding: 1.2rem;
+    padding: 0;
   }
 
   span {

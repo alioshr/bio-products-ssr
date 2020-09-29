@@ -29,6 +29,7 @@ body {
 button {
     border: none;
     outline: none;
+    background-color: transparent;
 }
 `;
 

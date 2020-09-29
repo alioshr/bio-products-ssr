@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import SocialMedia from "../SocialMedia/SocialMedia";
+import { useDispatch } from 'react-redux';
+import { useToggleCatalog } from '../../store/actions/actionsIndex'
 import {
   TitleWrapper,
   Title,
@@ -28,8 +30,8 @@ const Dropdown = ({
     <Fragment>
       {onProducts && (
         <TitleWrapper onClick={dropDownTogglerHandler}>
-          <Title>TITLE</Title>
-          <FontAwesomeIcon icon={faChevronDown} size="3x" />
+          <Title>{dropDownTitle}</Title>
+          <FontAwesomeIcon icon={faChevronDown} size="2x" />
         </TitleWrapper>
       )}
       <Transition in={showDropDown} timeout={500} mountOnEnter unmountOnExit>
@@ -54,32 +56,28 @@ const Dropdown = ({
 };
 export default Dropdown;
 
-//navigation for the toolbar
 const NavItems = ({ subItems, showDropDown, onProducts }) => {
   const [allowBackground, setAllowBackground] = useState(false);
-  const [backgroundToggledLink, setBackgroundToggledLink] = useState(false);
+  const [showBackground, setShowBackground] = useState(false);
   //Avoid the background appearance on hover while the menu opens
   useEffect(() => {
     setTimeout(() => {
       setAllowBackground(true);
     }, [550]);
-    //Avoid the background appearance on hover while the menu opens
-    if (!showDropDown) {
-      setAllowBackground(false);
-    }
   }, [showDropDown]);
 
   const navItemMouseEnter = (path) => {
-    setBackgroundToggledLink(path);
+    setShowBackground(path);
   };
 
   const navItemMouseLeave = () => {
-    setBackgroundToggledLink(false);
+    setShowBackground(false);
   };
 
   const navItems = subItems.map((item) => (
     <React.Fragment key={item.id}>
       <NavItem
+        categoryId={item.id}
         onProducts={onProducts}
         path={item.path}
         label={item.label}
@@ -88,7 +86,7 @@ const NavItems = ({ subItems, showDropDown, onProducts }) => {
       />
       {window.innerWidth > 640 && (
         <Background
-          showBackground={backgroundToggledLink === item.background}
+          showBackground={showBackground === item.background}
           backgroundImage={allowBackground && item.background}
         />
       )}
@@ -110,19 +108,24 @@ const NavItem = ({
   mouseEntered,
   mouseLeft,
   onProducts,
-  chooseProduct,
+  categoryId
 }) => {
+  const dispatch = useDispatch();
   let item = (
     <Link href={path}>
       <a>{label}</a>
     </Link>
   );
-  onProducts ? (item = <span>{label}</span>) : null;
+  let toggledCategory;
+  if(onProducts) {
+    item = <span>{label}</span>;
+    toggledCategory = () => dispatch(useToggleCatalog(categoryId));
+  }
   return (
     <MenuItem
       onMouseLeave={mouseLeft}
       onMouseEnter={mouseEntered}
-      onClick={chooseProduct}
+      onClick={toggledCategory}
     >
       {item}
     </MenuItem>

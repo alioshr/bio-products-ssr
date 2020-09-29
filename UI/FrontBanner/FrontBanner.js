@@ -12,8 +12,8 @@ const FrontBanner = () => (
 export default FrontBanner;
 
 const BannerWrapper = styled.section`
-  width: 100vw;
   height: 100vh;
+  width: 100vw;
   position: relative;
   background-color: black;
   overflow: hidden;

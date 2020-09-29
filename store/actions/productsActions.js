@@ -1,44 +1,58 @@
+import {mapProducts} from '../../Utilities/utilities'
 
 const PRODUCTS_OVERVIEW = "PRODUCTS_OVERVIEW";
-const LOAD_PRODUCTS_CATALOG = "LOAD_PRODUCTS_CATALOG";
+const SHOW_CATEGORIES = "SHOW_CATEGORIES"
+export const TOGGLE_CATALOG = 'TOGGLE_CATALOG';
+export const TOGGLE_CATEGORY = 'TOGGLE_CATEGORY'
 
 const productsOverview = () => {
     return {
         type: PRODUCTS_OVERVIEW
     }
 }
-//got to change this dummy thing for http requests when implement the database
+
 export const useProductsOverview = () => {
     return (dispatch, store) => {
         const overview = store().products.overview;
-        const catalogOverview = [];
-        for(let key in overview) {
-            catalogOverview.push({
-                id: key,
-                ...overview[key]
-            })
-        }
         dispatch(productsOverview());
-        return catalogOverview;
+        return mapProducts(overview);
     }
 }
 
-const prepLoadProductsCatalog = () => {
+export const toggleCatalog = (id, defaultCategory) => {
     return {
-        type: LOAD_PRODUCTS_CATALOG
+        type: TOGGLE_CATALOG,
+        catalog: id,
+        category: defaultCategory
     }
 }
 
-export const useLoadProductsCatalog = (productId) => {
+export const useToggleCatalog = (id) => {
     return (dispatch, store) => {
-        const catalog = store().productsReducer.catalog;
-        const productDetail = {};
-        for (let key in catalog) {
-            if(key === productId) {
-                Object.assign(productDetail, catalog[key])
-            }
-        }
-        dispatch(prepLoadProductsCatalog())
-        return productDetail;
+        const category = store().products.overview[id].products;
+        const defaultActiveCategory = category[0].id;
+        dispatch(toggleCatalog(id, defaultActiveCategory))
+    }
+}
+
+export const useToggleCategory = (id) => {
+    return {
+        type: TOGGLE_CATEGORY,
+        category: id
+    }
+}
+
+const catalogCategories = () => {
+    return {
+        type: SHOW_CATEGORIES
+    }
+}
+
+export const useCatalogCategories = () => {
+    return (dispatch, store) => {
+        const activeCatalog = store().products.activeCatalog
+        const overview = store().products.overview[activeCatalog].products
+        dispatch(catalogCategories());
+        return overview;
     }
 }

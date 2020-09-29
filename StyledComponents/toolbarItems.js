@@ -45,7 +45,7 @@ export const HBWr = styled.div`
   width: 3.2rem;
   height: 3.2rem;
   border-radius: 50%;
-  background-color: #fdf3e6;
+  background-color: #f29b38;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +55,6 @@ export const HBWr = styled.div`
   ${({ active }) =>
     active === true &&
     css`
-      background-color: ${mainColors.accentOrange};
       ${hamburgerSpanActive}
     `}
 `;
@@ -91,18 +90,11 @@ export const LogoWr = styled.div`
   width: 3.2rem;
   height: 3.2rem;
   border-radius: 50%;
-  background-color: #fdf3e6;
+  background-color: #f29b38;
   display: flex;
   justify-content: center;
   align-items: center;
-  ${({ active }) =>
-    active === true &&
-    css`
-      background-color: #f29b38;
-      & path {
-        fill: white;
-      }
-    `}
+
   @media (min-width: 40rem) {
     display: none;
   }

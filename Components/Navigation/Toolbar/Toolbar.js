@@ -47,6 +47,7 @@ const Toolbar = ({ visible }) => {
         <MobileIcons
           navItemsActive={navItemsActive}
           bottomIconStyle={bottomIconStyle}
+          topIconStyle={topIconStyle}
           showNavItems={() => dispatch(useShowNavigationItems())}
         />
       )}

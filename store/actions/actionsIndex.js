@@ -1,3 +1,3 @@
 export { useShowNavigationItems } from "./navigationActions";
 
-export { useProductsOverview, useLoadProductsCatalog } from "./productsActions";
+export { useProductsOverview, useToggleCatalog, useToggleCategory, useCatalogCategories } from "./productsActions";

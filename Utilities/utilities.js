@@ -1,3 +1,14 @@
+export const mapProducts = (object) => {
+  const array = [];
+  for(let key in object) {
+    array.push({
+          id: key,
+          ...object[key]
+      })
+  }
+  return array;
+}
+
 //used to transform nested objects chunks into arrays for mapping purposes
 export const objChunkToArr = (object, key) => {
     const chunk = [];
