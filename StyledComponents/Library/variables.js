@@ -5,7 +5,8 @@ export const mainColors = {
   neutral: "#000000cc",
   lightNeutral: "rgba(209, 209, 209, 0.8)",
   accentOrange: '#f29b38',
-  bodyBackground: '#fdf3e6'
+  bodyBackground: '#fdf3e6',
+  productsAccent: 'palevioletred'
 }
 
 export const zIndex = {

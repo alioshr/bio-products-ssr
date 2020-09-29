@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-import { zIndex } from "./variables";
+import { zIndex, mainColors } from "./variables";
 
 export const toolBarMixin = (
   top = null,
@@ -51,7 +51,7 @@ export const productsAlerts = (alert) => {
     font-size: 1rem;
     padding: 0.5rem;
     border-radius: 5px;
-    background-color: palevioletred;
+    background-color: ${mainColors.productsAccent};
     ${alert === "off" && "right: .5rem;"}
     ${alert === "stock" && "left: .5rem;"}
   `;

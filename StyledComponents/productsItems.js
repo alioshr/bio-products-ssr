@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
 import { mainColors } from "./Library/variables";
-import {productsAlerts} from './Library/mixins'
+import { productsAlerts } from "./Library/mixins";
 
 const productDims = {
   height: "440px",
@@ -74,6 +74,8 @@ export const Panel = styled.section`
   grid-template-columns: repeat(auto-fill, ${productDims.width});
   grid-gap: 1rem;
   justify-content: center;
+  height: 100vh;
+  overflow: scroll;
 `;
 
 export const Product = styled.div`
@@ -89,7 +91,7 @@ export const Image = styled.img`
   object-fit: cover;
   width: 100%;
   height: 60%;
-  border: 1px solid red;
+  border-radius: 5px;
 `;
 
 export const Name = styled.h3`
@@ -107,19 +109,51 @@ export const Hr = styled.hr`
 export const Price = styled.div``;
 
 export const PriceSpan = styled.span`
-font-weight: bold;
-${({off}) => off && css`
-color: gray;
-text-decoration: line-through;
-font-weight: 400;
-margin-right: .5rem;
-`}
-`
+  font-weight: bold;
+  ${({ off }) =>
+    off &&
+    css`
+      color: gray;
+      text-decoration: line-through;
+      font-weight: 400;
+      margin-right: 0.5rem;
+    `}
+`;
 
 export const Icons = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  & svg {
+    cursor: pointer;
+    transition: all 400ms ease;
+  }
+  svg:hover {
+    color: ${mainColors.accentOrange};
+  }
+`;
+
+export const IconInner = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  & svg {
+    transform: rotateZ(0);
+    transition: all 400ms ease;
+  }
+  &:hover svg {
+    color: ${mainColors.accentOrange};
+    transform: rotateZ(180deg);
+  }
+`;
+
+export const IconSpan = styled.span`
+  margin-left: 0.2rem;
+  font-size: 1.3rem;
+  transition: all 400ms ease;
+  &:hover {
+    color: ${mainColors.accentOrange};  
+  }
 `;
 
 export const StockAlert = styled.div`

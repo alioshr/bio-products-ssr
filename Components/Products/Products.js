@@ -13,6 +13,8 @@ import {
   Hr,
   Price,
   Icons,
+  IconInner,
+  IconSpan,
   StockAlert,
   Off,
   PriceSpan,
@@ -109,28 +111,30 @@ const ProductPanel = ({}) => {
       <Product>
         <StockCTA stock={5} />
         <OffPrice off={10} />
-        <Image />
+        <Image src="/Products/soapWorks/soap/3/0.jpg" />
         <Name>Nome</Name>
         <Span>Categoria</Span>
         <Hr />
         <Span>Estoque: 20 unid</Span>
         <Hr />
         <Prices price={45} off={10} />
-        <Icons>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <FontAwesomeIcon icon={faPlusCircle} size="lg" />
-            <span style={{ marginLeft: ".2rem", fontSize: "1.3rem" }}>
-              Info
-            </span>
-          </div>
-          <FontAwesomeIcon icon={faShoppingBag} size="2x" />
-        </Icons>
+        <IconPanel />
       </Product>
     );
   }
   console.log(test);
   return <Panel>{test}</Panel>;
 };
+
+const IconPanel = ({}) => (
+  <Icons>
+    <IconInner>
+      <FontAwesomeIcon icon={faPlusCircle} size="lg" />
+      <IconSpan>Info</IconSpan>
+    </IconInner>
+    <FontAwesomeIcon icon={faShoppingBag} size="2x" />
+  </Icons>
+);
 
 const StockCTA = ({ stock }) => (
   <StockAlert stock={stock} t>

@@ -30,34 +30,37 @@ const initialState = {
       allSizes: {
         0: {
           images: {
-            paths: { 0: "0", 1: "1" },
+            paths: { 0: "/Products/bioCloths/allSizes/0/0.jpg" },
             alt: "some alt text for all images",
           },
           name: "Amarelinho",
           stock: 20,
           price: 10,
+          off: false,
         },
       },
       medium: {
         0: {
           images: {
-            paths: { 0: "0", 1: "1" },
+            paths: { 0: "/Products/bioCloths/medium/0/0.jpg" },
             alt: "some alt text for all images",
           },
           name: "Florestal",
           stock: 10,
           price: 50,
+          off: false,
         },
       },
       big: {
         0: {
           images: {
-            paths: { 0: "0", 1: "1" },
+            paths: { 0: "/Products/bioCloths/big/0/0.jpg" },
             alt: "some alt text for all images",
           },
           name: "Joblinho",
           stock: 40,
           price: 70,
+          off: false,
         },
       },
     },
@@ -65,50 +68,58 @@ const initialState = {
       shampooConditioner: {
         0: {
           images: {
-            paths: { 0: "0", 1: "1" },
+            paths: {
+              0: "/Products/soapWorks/shampooConditioner/0/0.jpg",
+              1: "/Products/soapWorks/shampooConditioner/0/1.jpg",
+            },
             alt: "some alt text for all images",
           },
           name: "Restauração Capilar",
           stock: 20,
           price: 10,
+          off: false,
         },
       },
       soap: {
         0: {
           images: {
-            paths: { 0: "0", 1: "1" },
+            paths: { 0: "/Products/soapWorks/soap/0/0.jpg" },
             alt: "some alt text for all images",
           },
           name: "Hidrata Tudo",
           stock: 20,
           price: 10,
+          off: false,
         },
         1: {
           images: {
-            paths: { 0: "0", 1: "1" },
+            paths: { 0: "/Products/soapWorks/soap/1/0.jpg" },
             alt: "some alt text for all images",
           },
           name: "Esfolia Sua Alma",
           stock: 20,
           price: 10,
+          off: false,
         },
         2: {
           images: {
-            paths: { 0: "0", 1: "1" },
+            paths: { 0: "/Products/soapWorks/soap/2/0.jpg" },
             alt: "some alt text for all images",
           },
           name: "Hortelã Mentolado",
           stock: 20,
           price: 10,
+          off: false,
         },
         3: {
           images: {
-            paths: { 0: "0", 1: "1" },
+            paths: { 0: "/Products/soapWorks/soap/3/0.jpg" },
             alt: "some alt text for all images",
           },
           name: "Cacau com Chocolate",
           stock: 20,
           price: 10,
+          off: false,
         },
       },
     },
