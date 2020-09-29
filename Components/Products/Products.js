@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from "react";
+import React, { useState, useEffect, createRef, Fragment } from "react";
 import {
   ProductsWrapper,
   Category,
@@ -6,7 +6,16 @@ import {
   CategoryWrapper,
   Title,
   Panel,
-  Product
+  Product,
+  Image,
+  Name,
+  Span,
+  Hr,
+  Price,
+  Icons,
+  StockAlert,
+  Off,
+  PriceSpan,
 } from "../../StyledComponents/productsItems";
 import Dropdown from "../../UI/Dropdown/Dropdown";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,6 +25,8 @@ import {
   useToggleCategory,
 } from "../../store/actions/actionsIndex";
 import { useClientWindow } from "../../Hooks/useClientWindow";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingBag, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Products = ({}) => {
   const [navProducts, showNavProducts] = useState(false);
@@ -68,9 +79,11 @@ const Categories = ({ categories, toggleCategory, active }) => {
   useEffect(() => {
     if (elRefs.length > 0 && elRefs[0].current !== null) {
       const margin = window.innerWidth < 640 ? 8 : 32; //hardcoded the margins
-       setFitDevice(elRefs
-        .map((el) => el.current.offsetWidth)
-        .reduce((a, b, index) => (a + b) + (margin * index)) <= window.innerWidth);       
+      setFitDevice(
+        elRefs
+          .map((el) => el.current.offsetWidth)
+          .reduce((a, b, index) => a + b + margin * index) <= window.innerWidth
+      );
     }
   }, [elRefs]);
 
@@ -89,16 +102,54 @@ const Categories = ({ categories, toggleCategory, active }) => {
 };
 
 const ProductPanel = ({}) => {
+  //get state and map it from firebase
   const test = [];
-  for(let i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     test.push(
-      <Product>Product</Product>
-    )
+      <Product>
+        <StockCTA stock={5} />
+        <OffPrice off={10} />
+        <Image />
+        <Name>Nome</Name>
+        <Span>Categoria</Span>
+        <Hr />
+        <Span>Estoque: 20 unid</Span>
+        <Hr />
+        <Prices price={45} off={10} />
+        <Icons>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <FontAwesomeIcon icon={faPlusCircle} size="lg" />
+            <span style={{ marginLeft: ".2rem", fontSize: "1.3rem" }}>
+              Info
+            </span>
+          </div>
+          <FontAwesomeIcon icon={faShoppingBag} size="2x" />
+        </Icons>
+      </Product>
+    );
   }
-  console.log(test)
-  return (
-    <Panel>
-      {test}
-    </Panel>
-  );
-}
+  console.log(test);
+  return <Panel>{test}</Panel>;
+};
+
+const StockCTA = ({ stock }) => (
+  <StockAlert stock={stock} t>
+    Últimas Unidades!
+  </StockAlert>
+);
+
+const OffPrice = ({ off }) => <Off off={off}>{off}% OFF!</Off>;
+
+const Prices = ({ price, off }) => {
+  let value = <strong>10 BRL</strong>;
+  if (off) {
+    const offPrice = (price - (price * off) / 100).toFixed(2);
+    value = (
+      <Fragment>
+        <PriceSpan off>{price} BRL</PriceSpan>
+        <PriceSpan>{offPrice} BRL</PriceSpan>
+      </Fragment>
+    );
+  }
+  return <Price>{value} / unid</Price>;
+};

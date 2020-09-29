@@ -40,3 +40,19 @@ export const hamburgerSpanActive = css`
     transform: rotate(-45deg) translate(5%, 240%);
   }
 `;
+
+export const productsAlerts = (alert) => {
+  return css`
+    position: absolute;
+    top: 0.5rem;
+    width: fit-content;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: palevioletred;
+    ${alert === "off" && "right: .5rem;"}
+    ${alert === "stock" && "left: .5rem;"}
+  `;
+};
