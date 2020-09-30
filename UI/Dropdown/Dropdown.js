@@ -19,7 +19,6 @@ import {
 //dropdown
 const Dropdown = ({
   dropDownTitle,
-  subCategoryHandler,
   dropDownTogglerHandler,
   onProducts,
   showDropDown,
@@ -96,7 +95,7 @@ const NavItems = ({ subItems, showDropDown, onProducts }) => {
   return (
     <Fragment>
       {navItems}
-      <SocialMedia iconSize="4x" pattern="menu" />
+      <SocialMedia pattern="menu" />
     </Fragment>
   );
 };

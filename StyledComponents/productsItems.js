@@ -75,8 +75,7 @@ export const Panel = styled.section`
   grid-template-columns: repeat(auto-fill, ${productDims.width});
   grid-gap: 1rem;
   justify-content: center;
-  height: 100vh;
-  overflow: scroll;
+  min-height: 100vh;
 `;
 
 export const Product = styled.div`
@@ -116,9 +115,6 @@ export const ViewImages = styled.div`
       : state === "exiting" || state == "exited"
       ? modalLeave
       : null};
-      @media(min-width: 40rem) {
-        height: 75vh;
-      }
 `;
 
 export const ImagesWrapper = styled.div`
@@ -130,12 +126,10 @@ export const ImagesWrapper = styled.div`
   justify-content: flex-start;
   left: 50%;
   transform: translateX(-50%);
-  @media(min-width: 40rem) {
-      width: 40rem;
-  }
 `;
 
 export const ImageInnerWrapper = styled.div`
+
 
 `
 
@@ -171,7 +165,7 @@ export const ImageArrow = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  display: none;
+  display: block;
   svg {
     color: white;
   }

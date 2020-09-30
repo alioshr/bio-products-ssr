@@ -40,6 +40,7 @@ export const Title = styled.span`
 `;
 
 export const Nav = styled.nav`
+  padding: 1rem 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -63,7 +64,13 @@ export const List = styled.ul`
   ${wrapperDims};
   margin: 0;
   padding: 0;
+  height: auto;
   ${navItemsFlexStyles};
+
+  @media(max-height: 28rem) {
+    overflow: scroll;
+    justify-content: flex-start;
+  }
 `;
 
 const enterBackground = keyframes`to {opacity: 1}`;
@@ -77,6 +84,8 @@ const leaveBackgroundMixin = css`
   animation: ${leaveBackground} 700ms ease forwards;
 `;
 export const Background = styled.div`
+  display: none !important;
+  cursor: pointer;
   position: fixed;
   margin: 0;
   padding: 0;
@@ -88,6 +97,10 @@ export const Background = styled.div`
   background: linear-gradient(to top, rgba(86, 20, 238, 0.5) 100%, transparent),
     ${({ backgroundImage }) => css`url(${backgroundImage})`} center center/cover
       no-repeat fixed;
+
+      @media(min-width: 40rem) and (min-height: 28rem) {
+        display: block;
+      }
 `;
 
 export const MenuItem = styled.li`
@@ -123,5 +136,15 @@ export const MenuItem = styled.li`
     span {
       padding: 1.5rem;
     }
+  }
+
+  @media(max-height: 28rem) {
+    margin: 0;
+    font-size: 2rem;
+    a,
+    span {
+      padding: .8rem;
+    }
+  }
   }
 `;

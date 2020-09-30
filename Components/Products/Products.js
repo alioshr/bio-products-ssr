@@ -215,7 +215,7 @@ const ImagesModal = ({ images, state, closeModal }) => {
   ));
 
   const markers = images.paths.map((a, i) => (
-    <ImagesMarker active={i === activePic} key={i} />
+    <ImagesMarker onClick={() => setActivePic(i)} active={i === activePic} key={i} />
   ));
 
   const swapPicturesHandler = (direction) => {

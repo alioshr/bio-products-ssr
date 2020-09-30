@@ -17,15 +17,28 @@ import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dropdown from "../../../UI/Dropdown/Dropdown";
 import {useClientWindow} from '../../../Hooks/useClientWindow';
+import { useScrollPosition } from "../../../Hooks/useScrollPosition";
 
-const Toolbar = ({ visible }) => {
+
+const Toolbar = () => {
+  const [visible, setVisible] = useState(true);
   const dispatch = useDispatch();
   const globalWindow = useClientWindow();
   const navItemsActive = useSelector((state) => state.navigation.showNavItems);
   const navItems = useSelector((state) => state.navigation.navItems);
+  useScrollPosition(
+    ({ prevPos, currPos }) => {
+      const isShow = currPos.y >= prevPos.y;
+      if (isShow !== visible) setVisible(isShow);
+    },
+    [visible],
+    false,
+    false,
+    150
+  );
 
-  let topIconStyle = !visible ? { top: "-10vh" } : { top: "1rem" };
-  let bottomIconStyle = !visible ? { bottom: "-10vh" } : { bottom: "1rem" };
+  let topIconStyle = !visible ? { top: "-20vh" } : { top: "1rem" };
+  let bottomIconStyle = !visible ? { bottom: "-20vh" } : { bottom: "1rem" };
   const onMobileScreen = globalWindow?.innerWidth < 640;
 
   return (
