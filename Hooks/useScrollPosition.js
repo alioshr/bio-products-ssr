@@ -13,6 +13,7 @@ const getScrolledPosition = ({ element, useWindow }) => {
         x: position.left,
         y: position.top,
         height: position.height,
+        width: position.width,
         bottom: position.bottom,
       };
 };

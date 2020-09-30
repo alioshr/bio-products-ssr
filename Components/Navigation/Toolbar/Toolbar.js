@@ -36,7 +36,6 @@ const Toolbar = () => {
     false,
     150
   );
-
   let topIconStyle = !visible ? { top: "-20vh" } : { top: "1rem" };
   let bottomIconStyle = !visible ? { bottom: "-20vh" } : { bottom: "1rem" };
   const onMobileScreen = globalWindow?.innerWidth < 640;

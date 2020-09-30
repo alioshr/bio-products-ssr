@@ -23,6 +23,7 @@ import {
   ImagesMarker,
   ImagesMarkerWrapper,
   ImageArrow,
+  ImageInnerWrapper,
 } from "../../StyledComponents/productsItems";
 import Dropdown from "../../UI/Dropdown/Dropdown";
 import { useSelector, useDispatch } from "react-redux";
@@ -36,13 +37,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShoppingBag,
   faPlusCircle,
-  faArrowCircleRight,
-  faArrowCircleLeft,
   faChevronRight,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { Transition } from "react-transition-group";
 import { Backdrop } from "../../StyledComponents/main";
+import { useWindowDimension } from "../../Hooks/useWindowDimension";
 
 const Products = ({}) => {
   const [navProducts, showNavProducts] = useState(false);
@@ -207,15 +207,28 @@ const Prices = ({ price, off }) => {
 
 const ImagesModal = ({ images, state, closeModal }) => {
   const [activePic, setActivePic] = useState(0);
+  const [width, height] = useWindowDimension();
 
   const imgs = images.paths.map((img, i) => (
-        <div style={{minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-          <Image id={img} src={img} alt={images.alt} modal slide={activePic} />
-        </div>
+    <ImageInnerWrapper key={i}>
+      <Image
+        displayWidth={width}
+        displayHeight={height}
+        id={img}
+        src={img}
+        alt={images.alt}
+        modal
+        slide={activePic}
+      />
+    </ImageInnerWrapper>
   ));
 
   const markers = images.paths.map((a, i) => (
-    <ImagesMarker onClick={() => setActivePic(i)} active={i === activePic} key={i} />
+    <ImagesMarker
+      onClick={() => setActivePic(i)}
+      active={i === activePic}
+      key={i}
+    />
   ));
 
   const swapPicturesHandler = (direction) => {
@@ -228,7 +241,7 @@ const ImagesModal = ({ images, state, closeModal }) => {
   };
   return (
     <Fragment>
-      <ViewImages state={state} s>
+      <ViewImages displayWidth={width} displayHeight={height} state={state} s>
         <ImagesWrapper>{imgs}</ImagesWrapper>
         <ImagesMarkerWrapper>{markers}</ImagesMarkerWrapper>
         <ImageArrow onClick={() => swapPicturesHandler("left")} position="left">

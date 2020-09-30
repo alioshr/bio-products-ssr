@@ -91,15 +91,21 @@ export const Image = styled.img`
   cursor: pointer;
   object-fit: cover;
   width: 100%;
-  height: 60%;
   border-radius: 5px;
   transition: all 400ms ease;
-  ${({slide, modal}) => modal && css`
-  transform: translateX(${slide * -100}%);
-  object-fit: contain;
-  height: 100%;
-  `}  
- 
+  ${({ slide, modal }) =>
+    modal &&
+    css`
+      transform: translateX(${slide * -100}%);
+      object-fit: contain;
+      height: 100%;
+    `}
+  ${({ displayWidth, displayHeight }) =>
+    displayHeight < displayWidth
+      ? css`
+          height: ${displayHeight - 50}px;
+        `
+      : null}
 `;
 
 export const ViewImages = styled.div`
@@ -108,6 +114,8 @@ export const ViewImages = styled.div`
   width: fit-content;
   left: 50%;
   top: 50%;
+  height: auto;
+  width: auto;
   transform: translateY(-50%) translateX(-50%);
   ${({ state }) =>
     state === "entering" || state === "entered"
@@ -115,6 +123,18 @@ export const ViewImages = styled.div`
       : state === "exiting" || state == "exited"
       ? modalLeave
       : null};
+
+  ${({ displayWidth, displayHeight }) =>
+    displayHeight < displayWidth
+      ? css`
+          top: 0;
+          transform: translateY(0) translateX(-50%);
+        `
+      : displayHeight > displayWidth
+      ? css`
+          width: 100%;
+        `
+      : null}
 `;
 
 export const ImagesWrapper = styled.div`
@@ -129,9 +149,11 @@ export const ImagesWrapper = styled.div`
 `;
 
 export const ImageInnerWrapper = styled.div`
-
-
-`
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const ImagesMarkerWrapper = styled.div`
   padding: 0.4rem;
@@ -165,7 +187,7 @@ export const ImageArrow = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  display: block;
+  display: none;
   svg {
     color: white;
   }
@@ -177,17 +199,17 @@ export const ImageArrow = styled.div`
   ${({ position }) =>
     position === "right"
       ? css`
-          right: -6rem;
+          right: -20%;
         `
       : position === "left"
       ? css`
-          left: -6rem;
+          left: -20%;
         `
       : null}
 
-@media(min-width: 40rem) {
+  @media(min-width: 40rem) and (min-height: 28rem) {
     display: block;
-}
+  }
 `;
 
 export const Name = styled.h3`
