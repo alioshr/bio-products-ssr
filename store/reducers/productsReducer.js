@@ -34,7 +34,7 @@ const initialState = {
             alt: "some alt text for all images",
           },
           name: "Amarelinho",
-          stock: 20,
+          stock: 5,
           price: 10,
           off: false,
         },
@@ -97,7 +97,7 @@ const initialState = {
             alt: "some alt text for all images",
           },
           name: "Esfolia Sua Alma",
-          stock: 20,
+          stock: 3,
           price: 10,
           off: false,
         },
@@ -109,7 +109,7 @@ const initialState = {
           name: "Hortelã Mentolado",
           stock: 20,
           price: 10,
-          off: false,
+          off: 50,
         },
         3: {
           images: {

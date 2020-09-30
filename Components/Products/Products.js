@@ -40,8 +40,15 @@ const Products = ({}) => {
   const navProductsToggleHandler = () => showNavProducts((state) => !state);
   const toggleCategoryHandler = (id) => dispatch(useToggleCategory(id));
 
+  const [activeProducts, setActiveProducts] = useState(null);
+
+  useEffect(() => {
+    setActiveProducts(store.catalog[store.activeCatalog][store.activeCategory]);
+  }, [store.activeCategory, store.activeCatalog]);
+
   console.log("active catalog", store.activeCatalog);
   console.log("active category", store.activeCategory);
+  console.log("active products", activeProducts);
 
   return (
     <ProductsWrapper>
@@ -58,7 +65,7 @@ const Products = ({}) => {
         categories={activeCatalogCategories}
         toggleCategory={toggleCategoryHandler}
       />
-      <ProductPanel />
+      <ProductPanel products={activeProducts} />
     </ProductsWrapper>
   );
 };
@@ -103,27 +110,34 @@ const Categories = ({ categories, toggleCategory, active }) => {
   return <CategoryWrapper fitDisplay={fitDevice}>{catTitles}</CategoryWrapper>;
 };
 
-const ProductPanel = ({}) => {
-  //get state and map it from firebase
-  const test = [];
-  for (let i = 0; i < 10; i++) {
-    test.push(
-      <Product>
-        <StockCTA stock={5} />
-        <OffPrice off={10} />
-        <Image src="/Products/soapWorks/soap/3/0.jpg" />
-        <Name>Nome</Name>
-        <Span>Categoria</Span>
-        <Hr />
-        <Span>Estoque: 20 unid</Span>
-        <Hr />
-        <Prices price={45} off={10} />
-        <IconPanel />
-      </Product>
-    );
+const ProductPanel = ({ products }) => {
+  const prod = [];
+  for (let key in products) {
+    prod.push({
+      id: key,
+      ...products[key],
+      images: {
+        ...products[key].images,
+        paths: Object.values(products[key].images.paths),
+      },
+    });
   }
-  console.log(test);
-  return <Panel>{test}</Panel>;
+  console.log(prod);
+  //get state and map it from firebase
+
+  const prods = prod.map((p) => (
+    <Product key={p.id}>
+      <StockCTA stock={p.stock} />
+      <OffPrice off={p.off} />
+      <Image src="/Products/soapWorks/soap/3/0.jpg" />
+  <Name>{p.name}</Name>
+      <Span>Estoque: {p.stock} unidades</Span>
+      <Hr />
+      <Prices price={p.price} off={p.off} />
+      <IconPanel />
+    </Product>
+  ));
+  return <Panel>{prods}</Panel>;
 };
 
 const IconPanel = ({}) => (
