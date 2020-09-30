@@ -18,6 +18,11 @@ import {
   StockAlert,
   Off,
   PriceSpan,
+  ViewImages,
+  ImagesWrapper,
+  ImagesMarker,
+  ImagesMarkerWrapper,
+  ImageArrow,
 } from "../../StyledComponents/productsItems";
 import Dropdown from "../../UI/Dropdown/Dropdown";
 import { useSelector, useDispatch } from "react-redux";
@@ -28,7 +33,16 @@ import {
 } from "../../store/actions/actionsIndex";
 import { useClientWindow } from "../../Hooks/useClientWindow";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBag, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShoppingBag,
+  faPlusCircle,
+  faArrowCircleRight,
+  faArrowCircleLeft,
+  faChevronRight,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
+import { Transition } from "react-transition-group";
+import { Backdrop } from "../../StyledComponents/main";
 
 const Products = ({}) => {
   const [navProducts, showNavProducts] = useState(false);
@@ -45,10 +59,6 @@ const Products = ({}) => {
   useEffect(() => {
     setActiveProducts(store.catalog[store.activeCatalog][store.activeCategory]);
   }, [store.activeCategory, store.activeCatalog]);
-
-  console.log("active catalog", store.activeCatalog);
-  console.log("active category", store.activeCategory);
-  console.log("active products", activeProducts);
 
   return (
     <ProductsWrapper>
@@ -110,7 +120,16 @@ const Categories = ({ categories, toggleCategory, active }) => {
   return <CategoryWrapper fitDisplay={fitDevice}>{catTitles}</CategoryWrapper>;
 };
 
+//get state and map it from firebase
 const ProductPanel = ({ products }) => {
+  const [showImagesModal, setShowImagesModal] = useState(false);
+  const [activeImages, setActiveImages] = useState();
+
+  const imagesModalHandler = (images) => {
+    setActiveImages(images);
+    setShowImagesModal(true);
+  };
+
   const prod = [];
   for (let key in products) {
     prod.push({
@@ -122,22 +141,36 @@ const ProductPanel = ({ products }) => {
       },
     });
   }
-  console.log(prod);
-  //get state and map it from firebase
-
   const prods = prod.map((p) => (
     <Product key={p.id}>
       <StockCTA stock={p.stock} />
       <OffPrice off={p.off} />
-      <Image src="/Products/soapWorks/soap/3/0.jpg" />
-  <Name>{p.name}</Name>
+      <Image
+        onClick={() => imagesModalHandler(p.images)}
+        src={p.images.paths[0]}
+        alt={p.images.alt}
+      />
+      <Name>{p.name}</Name>
       <Span>Estoque: {p.stock} unidades</Span>
       <Hr />
       <Prices price={p.price} off={p.off} />
       <IconPanel />
     </Product>
   ));
-  return <Panel>{prods}</Panel>;
+  return (
+    <Fragment>
+      <Transition in={showImagesModal} timeout={400} mountOnEnter unmountOnExit>
+        {(state) => (
+          <ImagesModal
+            images={activeImages}
+            closeModal={() => setShowImagesModal(false)}
+            state={state}
+          />
+        )}
+      </Transition>
+      <Panel>{prods}</Panel>
+    </Fragment>
+  );
 };
 
 const IconPanel = ({}) => (
@@ -170,4 +203,45 @@ const Prices = ({ price, off }) => {
     );
   }
   return <Price>{value} / unid</Price>;
+};
+
+const ImagesModal = ({ images, state, closeModal }) => {
+  const [activePic, setActivePic] = useState(0);
+
+  const imgs = images.paths.map((img, i) => (
+        <div style={{minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+          <Image id={img} src={img} alt={images.alt} modal slide={activePic} />
+        </div>
+  ));
+
+  const markers = images.paths.map((a, i) => (
+    <ImagesMarker active={i === activePic} key={i} />
+  ));
+
+  const swapPicturesHandler = (direction) => {
+    if (activePic < images.paths.length - 1 && direction === "right") {
+      setActivePic((state) => state + 1);
+    }
+    if (activePic > 0 && direction === "left") {
+      setActivePic((state) => state - 1);
+    }
+  };
+  return (
+    <Fragment>
+      <ViewImages state={state} s>
+        <ImagesWrapper>{imgs}</ImagesWrapper>
+        <ImagesMarkerWrapper>{markers}</ImagesMarkerWrapper>
+        <ImageArrow onClick={() => swapPicturesHandler("left")} position="left">
+          <FontAwesomeIcon icon={faChevronLeft} size="4x" />
+        </ImageArrow>
+        <ImageArrow
+          onClick={() => swapPicturesHandler("right")}
+          position="right"
+        >
+          <FontAwesomeIcon icon={faChevronRight} size="4x" />
+        </ImageArrow>
+      </ViewImages>
+      <Backdrop onClick={closeModal} state={state} />
+    </Fragment>
+  );
 };

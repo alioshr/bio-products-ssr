@@ -7,7 +7,7 @@ const initialState = {
   overview: {
     bioCloths: {
       label: "BIO EMBALAGENS",
-      background: "/Products/Cloth3.jpg",
+      background: "/Products/overview/bioCloths.jpg",
       path: "bio-embalagens",
       products: [
         { id: "allSizes", label: "MIX" },
@@ -17,7 +17,7 @@ const initialState = {
     },
     soapWorks: {
       label: "SABOARIA",
-      background: "/Products/saboaria1.jpg",
+      background: "/Products/overview/soapWorks.jpg",
       path: "saboaria",
       products: [
         { id: "shampooConditioner", label: "CABELOS" },
