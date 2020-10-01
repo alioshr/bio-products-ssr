@@ -43,6 +43,7 @@ import {
 import { Transition } from "react-transition-group";
 import { Backdrop } from "../../StyledComponents/main";
 import { useWindowDimension } from "../../Hooks/useWindowDimension";
+import Link from 'next/link'
 
 const Products = ({}) => {
   const [navProducts, showNavProducts] = useState(false);
@@ -58,7 +59,7 @@ const Products = ({}) => {
 
   useEffect(() => {
     setActiveProducts(store.catalog[store.activeCatalog][store.activeCategory]);
-  }, [store.activeCategory, store.activeCatalog]);
+  }, [store.activeCategory, store.activeCatalog]);  
 
   return (
     <ProductsWrapper>
@@ -129,7 +130,6 @@ const ProductPanel = ({ products }) => {
     setActiveImages(images);
     setShowImagesModal(true);
   };
-
   const prod = [];
   for (let key in products) {
     prod.push({
@@ -141,6 +141,9 @@ const ProductPanel = ({ products }) => {
       },
     });
   }
+
+  const string = ("Restauração Capilar").replace(" ","-");
+  console.log(string)
   const prods = prod.map((p) => (
     <Product key={p.id}>
       <StockCTA stock={p.stock} />
@@ -154,7 +157,7 @@ const ProductPanel = ({ products }) => {
       <Span>Estoque: {p.stock} unidades</Span>
       <Hr />
       <Prices price={p.price} off={p.off} />
-      <IconPanel />
+      <IconPanel path={string}/>
     </Product>
   ));
   return (
@@ -173,12 +176,14 @@ const ProductPanel = ({ products }) => {
   );
 };
 
-const IconPanel = ({}) => (
+const IconPanel = ({path}) => (
   <Icons>
+    <Link href={`/product/${encodeURIComponent(path)}`}>
     <IconInner>
       <FontAwesomeIcon icon={faPlusCircle} size="lg" />
       <IconSpan>Info</IconSpan>
     </IconInner>
+    </Link>
     <FontAwesomeIcon icon={faShoppingBag} size="2x" />
   </Icons>
 );

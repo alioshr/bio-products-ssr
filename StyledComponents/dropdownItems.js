@@ -99,7 +99,7 @@ export const Background = styled.div`
       no-repeat fixed;
 
       @media(min-width: 40rem) and (min-height: 28rem) {
-        display: block;
+        display: block !important;
       }
 `;
 
@@ -145,6 +145,5 @@ export const MenuItem = styled.li`
     span {
       padding: .8rem;
     }
-  }
   }
 `;

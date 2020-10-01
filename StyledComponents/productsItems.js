@@ -75,7 +75,7 @@ export const Panel = styled.section`
   grid-template-columns: repeat(auto-fill, ${productDims.width});
   grid-gap: 1rem;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100vh;  
 `;
 
 export const Product = styled.div`
@@ -101,7 +101,7 @@ export const Image = styled.img`
       height: 100%;
     `}
   ${({ displayWidth, displayHeight }) =>
-    displayHeight < displayWidth
+    displayHeight < displayWidth && displayHeight < 448
       ? css`
           height: ${displayHeight - 50}px;
         `
@@ -125,7 +125,7 @@ export const ViewImages = styled.div`
       : null};
 
   ${({ displayWidth, displayHeight }) =>
-    displayHeight < displayWidth
+    displayHeight < displayWidth && displayHeight < 448
       ? css`
           top: 0;
           transform: translateY(0) translateX(-50%);
