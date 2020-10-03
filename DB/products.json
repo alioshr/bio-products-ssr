@@ -1,0 +1,23 @@
+{
+    "overview": {
+        "bioCloths": {
+          "label": "BIO EMBALAGENS",
+          "background": "/Products/overview/bioCloths.jpg",
+          "path": "bio-embalagens",
+          "products": [
+            { "id": "allSizes", "label": "MIX" },
+            { "id": "medium", "label": "MEDIO" },
+            { "id": "big", "label": "GRANDE" }
+          ]
+        },
+        "soapWorks": {
+          "label": "SABOARIA",
+          "background": "/Products/overview/soapWorks.jpg",
+          "path": "saboaria",
+          "products": [
+            { "id": "shampooConditioner", "label": "CABELOS" },
+            { "id": "soap", "label": "SABONETE" }
+          ]
+        }
+      }
+    }

@@ -1,0 +1,26 @@
+[
+    {
+      "id": "Home",
+      "label": "INÍCIO",
+      "path": "/",
+      "background": "/NavigationItems/Home/home.jpg"
+     },
+     {
+      "id": "login",
+      "label": "LOGIN",
+      "path": "/Login",
+      "background": "/NavigationItems/Login/login.jpg"
+     },
+     {
+      "id": "about",
+      "label": "SOBRE NÓS",
+      "path": "/sobre-nos",
+      "background": "/NavigationItems/About/about.jpg"
+     },
+     {
+      "id": "faq",
+      "label": "FAQ",
+      "path": "/faq",
+      "background": "/NavigationItems/Faq/faq.jpg"
+     }
+  ]

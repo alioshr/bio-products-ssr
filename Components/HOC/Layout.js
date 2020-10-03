@@ -1,5 +1,5 @@
 import React from "react";
-import Toolbar from "../Navigation/Toolbar/Toolbar";
+import Toolbar from "../Toolbar/Toolbar";
 import Footer from "./Footer";
 import {Wrapper} from '../../StyledComponents/layoutItems'
 
