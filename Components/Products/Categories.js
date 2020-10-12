@@ -9,7 +9,7 @@ const Categories = ({ categories, toggleCategory, active }) => {
     const [elRefs, setElRefs] = React.useState([]);
     const [fitDevice, setFitDevice] = useState(null);
     const window = useClientWindow();
-  
+
     useEffect(() => {
       setElRefs((elRefs) =>
         Array(catLength)
@@ -28,6 +28,7 @@ const Categories = ({ categories, toggleCategory, active }) => {
         );
       }
     }, [elRefs]);
+
   
     const catTitles = categories.map((category, index) => (
       <Category

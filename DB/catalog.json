@@ -100,15 +100,70 @@
       },
       "details": {
         "bioCloths": {
-          "allSizes": {},
-          "medium": {},
-          "big": {}
+          "allSizes": {
+            "0": {
+              "about": "some text About",
+              "how": "some text how to use",
+              "ingredients": "some text about ingredients",
+              "review": "some text about review"
+            }
+          },
+          "medium": {
+            "0": {
+              "about": "some text About",
+              "how": "some text how to use",
+              "ingredients": "some text about ingredients",
+              "review": "some text about review"
+            }
+          },
+          "big": {
+            "0": {
+               "about": "some text About",
+              "how": "some text how to use",
+              "ingredients": "some text about ingredients",
+              "review": "some text about review"
+            }
+          }
         },
         "soapWorks": {
-          "ofuro": {},
-          "greenClay": {},
-          "shampooConditioner": {},
-          "soap": {}
+          "ofuro": {
+            "0": {
+              "about": "some text About",
+              "how": "some text how to use",
+              "ingredients": "some text about ingredients",
+              "review": "some text about review"
+            }
+          },
+          "greenClay": {
+            "0": {
+              "about": "some text About",
+              "how": "some text how to use",
+              "ingredients": "some text about ingredients",
+              "review": "some text about review"
+            }
+          },
+          "shampooConditioner": {
+            "0": {
+              "about": "some text About",
+              "how": "some text how to use",
+              "ingredients": "some text about ingredients",
+              "review": "some text about review"
+            }
+          },
+          "soap": {
+            "0": {
+              "about": "some text About",
+              "how": "some text how to use",
+              "ingredients": "some text about ingredients",
+              "review": "some text about review"
+            },
+            "1": {
+              "about": "some text About",
+              "how": "some text how to use",
+              "ingredients": "some text about ingredients",
+              "review": "some text about review"
+            }
+          }
         }
       }
 }

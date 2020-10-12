@@ -15,5 +15,6 @@ export const zIndex = {
   toolbar: 12,
   cart: 10,
   backdrop: 13,
-  modal: 100
+  modal: 100,
+  aboveBackDrop: 14
 }

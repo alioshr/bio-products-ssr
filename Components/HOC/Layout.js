@@ -1,6 +1,6 @@
 import React from "react";
 import Toolbar from "../Toolbar/Toolbar";
-import Footer from "./Footer";
+import Footer from "../Footer/Footer";
 import {Wrapper} from '../../StyledComponents/layoutItems'
 
 const Layout = (props) => {

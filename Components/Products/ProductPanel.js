@@ -82,17 +82,19 @@ const ProductPanel = ({ products, activeCatalog, activeCategory }) => {
 
 export default ProductPanel;
 
-const IconPanel = ({ path }) => (
+const IconPanel = ({ path }) =>  (
   <Icons>
-    <Link href={path}>
-      <IconInner>
-        <FontAwesomeIcon icon={faPlusCircle} size="lg" />
-        <IconSpan>Info</IconSpan>
-      </IconInner>
-    </Link>
-    <FontAwesomeIcon icon={faShoppingBag} size="2x" />
-  </Icons>
-);
+  <Link href={path}>
+    <IconInner>
+      <FontAwesomeIcon icon={faPlusCircle} size="lg" />
+      <IconSpan>Info</IconSpan>
+    </IconInner>
+  </Link>
+  <FontAwesomeIcon icon={faShoppingBag} size="2x" />
+</Icons>
+)
+   
+  
 
 const StockCTA = ({ stock }) => (
   <StockAlert stock={stock}>Últimas Unidades!</StockAlert>

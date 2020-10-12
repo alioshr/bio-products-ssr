@@ -67,7 +67,7 @@ const ImagesModal = ({ images, state, closeModal }) => {
           <FontAwesomeIcon icon={faChevronRight} size="4x" />
         </ImageArrow>
       </ViewImages>
-      <Backdrop onClick={closeModal} state={state} />
+      <Backdrop forElement={false} onClick={closeModal} state={state} />
     </Fragment>
   );
 };

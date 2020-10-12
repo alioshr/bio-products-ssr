@@ -17,7 +17,7 @@ const Products = ({}) => {
   const activeCategories = OverviewDB.overview[store.activeCatalog].products;
   const dispatch = useDispatch();
 
-  //this will be replaced by a catalog
+  //this will be replaced by SSR 
   useEffect(() => {
     setActiveProducts(
       CatalogDB.catalog[store.activeCatalog][store.activeCategory]
