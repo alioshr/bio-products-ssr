@@ -92,20 +92,6 @@ export const Image = styled.img`
   object-fit: cover;
   width: 100%;
   border-radius: 5px;
-  transition: all 400ms ease;
-  ${({ slide, modal }) =>
-    modal &&
-    css`
-      transform: translateX(${slide * -100}%);
-      object-fit: contain;
-      height: 100%;
-    `}
-  ${({ displayWidth, displayHeight }) =>
-    displayHeight < displayWidth && displayHeight < 448
-      ? css`
-          height: ${displayHeight - 50}px;
-        `
-      : null}
 `;
 
 export const ViewImages = styled.div`
@@ -114,8 +100,8 @@ export const ViewImages = styled.div`
   width: fit-content;
   left: 50%;
   top: 50%;
-  height: auto;
-  width: auto;
+  height: ${({displayHeight}) => displayHeight * 70 / 100}px;
+  width: 60vw;
   transform: translateY(-50%) translateX(-50%);
   ${({ state }) =>
     state === "entering" || state === "entered"
@@ -127,89 +113,17 @@ export const ViewImages = styled.div`
   ${({ displayWidth, displayHeight }) =>
     displayHeight < displayWidth && displayHeight < 448
       ? css`
-          top: 0;
+          top: 5px;
           transform: translateY(0) translateX(-50%);
+          height: ${displayHeight - 5}px;
+          width: fit-content;
+          max-width: 60vw;
         `
       : displayHeight > displayWidth
       ? css`
           width: 100%;
         `
       : null}
-`;
-
-export const ImagesWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  overflow: hidden;
-  justify-content: flex-start;
-  left: 50%;
-  transform: translateX(-50%);
-`;
-
-export const ImageInnerWrapper = styled.div`
-  min-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ImagesMarkerWrapper = styled.div`
-  padding: 0.4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30%;
-  height: 3rem;
-  position: absolute;
-  bottom: -3rem;
-  left: 50%;
-  transform: translateX(-50%);
-`;
-
-export const ImagesMarker = styled.div`
-  cursor: pointer;
-  width: 1.1rem;
-  height: 1.1rem;
-  border-radius: 50%;
-  margin: 0 0.3rem;
-  background-color: white;
-  ${({ active }) =>
-    active &&
-    css`
-      background-color: ${mainColors.accentOrange};
-    `}
-`;
-
-export const ImageArrow = styled.div`
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  display: none;
-  svg {
-    color: white;
-  }
-  :hover {
-    svg {
-      color: ${mainColors.accentOrange};
-    }
-  }
-  ${({ position }) =>
-    position === "right"
-      ? css`
-          right: -20%;
-        `
-      : position === "left"
-      ? css`
-          left: -20%;
-        `
-      : null}
-
-  @media(min-width: 40rem) and (min-height: 28rem) {
-    display: block;
-  }
 `;
 
 export const Name = styled.h3`

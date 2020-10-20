@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Wrapper,
   Banner,
-  BannerImage,
   Details,
   Title,
   Features,
@@ -17,16 +16,21 @@ import {
 } from "../../StyledComponents/productDetails";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
-import { Backdrop } from "../../StyledComponents/main";
-import {useScrollTo} from '../../Hooks/useScrollTo'
+import { useScrollTo } from "../../Hooks/useScrollTo";
+import { Gallery } from "../../UI/Swipeable/Swipeable";
+import {useClientWindow} from '../../Hooks/useClientWindow'
 import FeaturesDB from "../../DB/catalog.json";
 
-const ProductDetails = ({ product, category, id }) => {
+const ProductDetails = ({ product, category, id, name }) => {
   const [qty, setQty] = useState(1);
   const [activeSpec, setActiveSpec] = useState(0);
   const [featureTouched, setFeatureTouched] = useState(false);
+  const ref = useRef();
+  const window = useClientWindow();
 
-  const ProdDetails = FeaturesDB.details[product][category][id];
+  //this will be replaced by an http request
+  const prodDetails = FeaturesDB.details[product][category][id];
+  console.log(window?.outerWidth);
 
   const qtyHandler = (mode) => {
     if (mode === "remove" && qty > 1) {
@@ -42,13 +46,11 @@ const ProductDetails = ({ product, category, id }) => {
     index === activeSpec && setFeatureTouched((state) => !state);
     !featureTouched
       ? setTimeout(
-          () => window.scrollTo({ top: 266.8, behavior: "smooth" }),
+          () =>
+            window.scrollTo({ top: ref.current.offsetTop, behavior: "smooth" }),
           500
         )
-      :  setTimeout(
-        () => useScrollTo(0, 750),
-        390
-      )
+      : setTimeout(() => useScrollTo(0, 750), 390);
     setActiveSpec(index);
   };
 
@@ -67,15 +69,29 @@ const ProductDetails = ({ product, category, id }) => {
     </Feature>
   ));
 
+  const dummy = [
+    `https://cdn11.bigcommerce.com/s-9p889rxpkb/images/stencil/1280x1280/products/392/1235/Clarifying_gel_cleanser_front__96525.1594249352.jpg?c=2`,
+    `https://cdn11.bigcommerce.com/s-9p889rxpkb/images/stencil/1280x1280/products/393/1238/Clear_Genius_Toner_Front__51597.1594249597.jpg?c=2`,
+  ];
+
   return (
     <Wrapper>
-      <Banner>
-        <BannerImage src="/DetailsTest/test.jpg" alt="banner logo" />
-        <Title>Café Black</Title>
-        <Backdrop style={{ zIndex: 1 }} forElement={true} />
+      <Banner maxWidth={window?.outerWidth}>
+        <Gallery
+          rowWidth="100%"
+          rowHeight="100%"
+          markerActiveColor="orange"
+          markerInactiveColor="lightgray"
+          items={dummy}
+          childProps={{
+            alt: "banner logo",
+          }}
+          withNav={false}
+        />
       </Banner>
       <Details>
-        <Features index={activeSpec} active={featureTouched}>
+        <Title>{name}</Title>
+        <Features ref={ref} index={activeSpec} active={featureTouched}>
           {features}
         </Features>
         <Panel>
@@ -101,6 +117,7 @@ export async function getServerSideProps(context) {
   const product = context.query.product;
   const category = context.query.activeCategory;
   const id = context.query.id;
+  const name = context.query.name;
   // const res = await fetch(
   //   `https://meli-99509.firebaseio.com/catalog/${product}/${category}/${id}.json`
   // );
@@ -111,6 +128,7 @@ export async function getServerSideProps(context) {
       product,
       category,
       id,
+      name,
     },
   };
 }

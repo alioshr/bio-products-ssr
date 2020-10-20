@@ -119,7 +119,7 @@ const ProductLogo = () => (
 
 const ShoppingCart = ({ style }) => (
   <Cart style={style}>
-    <FontAwesomeIcon icon={faShoppingBag} size="2x" />
+    <FontAwesomeIcon icon={faShoppingBag} />
     <CartCounter>
       <span>3</span>
     </CartCounter>

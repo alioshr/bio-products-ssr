@@ -41,7 +41,7 @@ export const NavigationPanel = styled.div`
 `;
 
 export const HBWr = styled.div`
-  ${toolBarMixin(null, 1, null, 1)};
+  ${toolBarMixin(null, .5, null, 1)};
   width: 3.2rem;
   height: 3.2rem;
   border-radius: 50%;
@@ -86,7 +86,7 @@ export const HBSpan = styled.span`
 `;
 
 export const LogoWr = styled.div`
-  ${toolBarMixin(1, 1)};
+  ${toolBarMixin(1, .5)};
   width: 3.2rem;
   height: 3.2rem;
   border-radius: 50%;
@@ -128,12 +128,11 @@ export const Cart = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  margin-right: 1rem;
   color: ${mainColors.accentOrange};
   height: 4rem;
   justify-content: center;
-  & path {
-    font-size: 2.5rem;
+  & svg {
+    font-size: 3rem;
   }
   @media (min-width: 40rem) {
     height: 2rem;

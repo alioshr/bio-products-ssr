@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
-import React from 'react'
-import {Provider} from 'react-redux'
-import {useStore} from '../store/store'
-import Layout from '../Components/HOC/Layout'
-import {Helmet} from 'react-helmet'
+import React from "react";
+import { Provider } from "react-redux";
+import { useStore } from "../store/store";
+import Layout from "../Components/HOC/Layout";
+import { Helmet } from "react-helmet";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -35,16 +35,19 @@ button {
 
 //this config enables global styles
 function App({ Component, pageProps }) {
-  const store = useStore(pageProps.initialReduxState)
+  const store = useStore(pageProps.initialReduxState);
   return (
     <Provider store={store}>
       <Helmet>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap"/>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Chilanka&family=Roboto+Condensed&display=swap"
+        />
       </Helmet>
       <Layout>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
       </Layout>
-    <GlobalStyle />
+      <GlobalStyle />
     </Provider>
   );
 }

@@ -5,32 +5,30 @@ import { zIndex } from "../StyledComponents/Library/variables";
 export const Wrapper = styled.section`
   min-height: 100vh;
   width: 100%;
-  background-color: ${mainColors.bodyBackground};
+  /* background-color: ${mainColors.bodyBackground}; */
+  background-color: white;
 `;
 
 export const Banner = styled.div`
   width: 100%;
-  height: 40vh;
+  max-width:${({maxWidth}) => maxWidth}px;
+  height: 55vh;
   position: relative;
-`;
-
-export const BannerImage = styled.img`
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+  overflow: hidden;
+  @media(min-width: 40rem) {
+    width: 50%;
+    margin: auto;
+  }
 `;
 
 export const Title = styled.h1`
-  z-index: 2;
-  font-size: 3rem;
-  margin: 1rem auto;
-  width: 80%;
+  font-size: 2.8rem;
   text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
+  margin: 0;
+  font-family: 'Chilanka', cursive;
+  @media(min-width: 40rem) {
+    margin: 1rem;
+  }
 `;
 
 export const Details = styled.section`
@@ -38,7 +36,7 @@ export const Details = styled.section`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  min-height: 60vh;
+  min-height: 45vh;
 `;
 
 const featuresPositioningMixin = (index) => {
@@ -57,28 +55,35 @@ const featuresPositioningMixin = (index) => {
       `;
     case 3:
       return css`
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
       `;
   }
 };
 
 export const Features = styled.div`
   position: relative;
-  margin: 2rem 0;
+  margin: 1rem 0;
   overflow: hidden;
-  height: 237px;
-  width: 301px;
+  height: 200px;
+  width: 265px;
   transition: all 400ms ease-in-out;
   ${({ index }) => featuresPositioningMixin(index)};
-  ${({active}) => active && css`
-  width: 100vw;
-  min-height: 100vh;
-  margin-top: 0;
-  `}
+  ${({ active }) =>
+    active &&
+    css`
+      width: 100vw;
+      min-height: 100vh;
+      margin-top: 0;
+    `}
   @media (min-width: 840px) {
     /* make a simple flex deal */
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
   }
 `;
 
@@ -114,8 +119,8 @@ const featureMixin = (index) => {
 export const Feature = styled.div`
   cursor: pointer;
   position: absolute;
-  height: 7rem;
-  width: 9rem;
+  height: 6rem;
+  width: 8rem;
   background-color: #f7c68e;
   border-radius: 25px;
   color: white;
@@ -134,6 +139,7 @@ export const Feature = styled.div`
       width: 100%;
       height: 100%;
       border-radius: 0;
+      justify-content: flex-start;
     `};
   ${({ inactive, index }) =>
     inactive &&
@@ -141,47 +147,57 @@ export const Feature = styled.div`
       transform: translateX(${index % 2 !== 0 ? 300 : -300}%);
       opacity: 0;
     `}
-  @media (min-width: 40rem) {
-    :hover {
-      animation: ${rotateFeat} 800ms ease-in forwards;
+    @media(min-width: 40rem) {
+      position: relative;
+      margin: 1rem;
+      ${({ active }) =>
+    active &&
+    css`
+      margin: 0;
+    `};
+      ${({ inactive, index }) =>
+    inactive &&
+    css`
+      position: absolute;
+    `}
     }
-  }
 `;
 
 export const FeatTitle = styled.h1`
-position: relative;
-font-size: 1.3rem;
-transform: translateY(0);
-transition: all 1100ms ease;
-${({active}) => active && css`
-transform: translateY(-450%);
-font-size: 3rem;
-`}
-`
-
+  position: relative;
+  font-size: 1.3rem;
+  transform: translateY(0);
+  transition: all 1100ms ease;
+  ${({ active }) =>
+    active &&
+    css`
+      font-size: 3rem;
+    `}
+`;
 
 export const Panel = styled.div`
   display: flex;
-  background: linear-gradient(
+  /* background: linear-gradient(
     45deg,
     palevioletred 50%,
     ${mainColors.accentBackground}
-  );
-  border-radius: 25px;
+  ); */
+  background-color: ${mainColors.accentBackground};
+  border-radius: 5px;
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  width: 80%;
   color: white;
   max-width: 25rem;
   padding: 0.2rem;
+  margin-bottom: 1rem;
 `;
 
 export const CTA = styled.button`
   width: 100%;
-  height: 4rem;
+  height: 3rem;
   align-content: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: white;
   cursor: pointer;
   position: relative;
@@ -192,13 +208,13 @@ export const Purchase = styled.div`
 `;
 
 export const Add = styled.button`
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: white;
   cursor: pointer;
 `;
 
 export const Remove = styled.button`
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: white;
   cursor: pointer;
 `;
@@ -206,7 +222,26 @@ export const Remove = styled.button`
 export const Qty = styled.span`
   grid-area: Qty;
   align-self: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   width: 2rem;
 `;
 export const Article = styled.article``;
+
+export const Testimony = styled.article`
+width: 100%;
+color: #c4c4c4; 
+font-size: 1.2rem;
+position: relative;
+
+::before {
+position: absolute;
+content: "\201C";
+left: -10%;
+}
+
+::after {
+position: absolute;
+content: "\201D";
+right: -10%;
+}
+`;

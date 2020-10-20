@@ -1,169 +1,182 @@
 {
-    "catalog": {
-        "bioCloths": {
-          "allSizes": {
-            "0": {
-              "images": {
-                "paths": { "0": "/Products/bioCloths/allSizes/0/0.jpg" },
-                "alt": "some alt text for all images"
-              },
-              "name": "Amarelinho",
-              "stock": 5,
-              "price": 10,
-              "off": false
-            }
+  "catalog": {
+    "bioCloths": {
+      "allSizes": {
+        "0": {
+          "images": {
+            "paths": { "0": "/Products/bioCloths/allSizes/0/0.jpg" },
+            "alt": "some alt text for all images"
           },
-          "medium": {
-            "0": {
-              "images": {
-                "paths": { "0": "/Products/bioCloths/medium/0/0.jpg" },
-                "alt": "some alt text for all images"
-              },
-              "name": "Florestal",
-              "stock": 10,
-              "price": 50,
-              "off": false
-            }
+          "name": "Amarelinho",
+          "stock": 5,
+          "price": 10,
+          "off": false
+        }
+      },
+      "medium": {
+        "0": {
+          "images": {
+            "paths": { "0": "/Products/bioCloths/medium/0/0.jpg" },
+            "alt": "some alt text for all images"
           },
-          "big": {
-            "0": {
-              "images": {
-                "paths": { "0": "/Products/bioCloths/big/0/0.jpg" },
-                "alt": "some alt text for all images"
-              },
-              "name": "Joblinho",
-              "stock": 40,
-              "price": 70,
-              "off": false
-            }
-          }
+          "name": "Florestal",
+          "stock": 10,
+          "price": 50,
+          "off": false
+        }
+      },
+      "big": {
+        "0": {
+          "images": {
+            "paths": { "0": "/Products/bioCloths/big/0/0.jpg" },
+            "alt": "some alt text for all images"
+          },
+          "name": "Joblinho",
+          "stock": 40,
+          "price": 70,
+          "off": false
+        }
+      }
+    },
+    "soapWorks": {
+      "shampooConditioner": {
+        "0": {
+          "images": {
+            "paths": {
+              "0": "/Products/soapWorks/shampooConditioner/0/0.jpg",
+              "1": "/Products/soapWorks/shampooConditioner/0/1.jpg"
+            },
+            "alt": "some alt text for all images"
+          },
+          "name": "Restauração Capilar",
+          "stock": 20,
+          "price": 10,
+          "off": false
+        }
+      },
+      "soap": {
+        "0": {
+          "images": {
+            "paths": { "0": "/Products/soapWorks/soap/0/0.jpg" },
+            "alt": "some alt text for all images"
+          },
+          "name": "Hidrata Tudo",
+          "stock": 20,
+          "price": 10,
+          "off": false
         },
-        "soapWorks": {
-          "shampooConditioner": {
-            "0": {
-              "images": {
-                "paths": {
-                  "0": "/Products/soapWorks/shampooConditioner/0/0.jpg",
-                  "1": "/Products/soapWorks/shampooConditioner/0/1.jpg"
-                },
-                "alt": "some alt text for all images"
-              },
-              "name": "Restauração Capilar",
-              "stock": 20,
-              "price": 10,
-              "off": false
-            }
+        "1": {
+          "images": {
+            "paths": { "0": "/Products/soapWorks/soap/1/0.jpg" },
+            "alt": "some alt text for all images"
           },
-          "soap": {
+          "name": "Esfolia Sua Alma",
+          "stock": 3,
+          "price": 10,
+          "off": false
+        },
+        "2": {
+          "images": {
+            "paths": { "0": "/Products/soapWorks/soap/2/0.jpg" },
+            "alt": "some alt text for all images"
+          },
+          "name": "Hortelã Mentolado",
+          "stock": 20,
+          "price": 10,
+          "off": 50
+        },
+        "3": {
+          "images": {
+            "paths": { "0": "/Products/soapWorks/soap/3/0.jpg" },
+            "alt": "some alt text for all images"
+          },
+          "name": "Cacau com Chocolate",
+          "stock": 20,
+          "price": 10,
+          "off": false
+        }
+      }
+    }
+  },
+  "details": {
+    "bioCloths": {
+      "allSizes": {
+        "0": {
+          "banner": "/Products/bioCloths/allSizes/0/banner.jpg",
+          "about": "some text About",
+          "how": "some text how to use",
+          "ingredients": {
+            "0": "Algodão orgânico",
+            "2": "Cera de abelha"
+          },
+          "review": {
             "0": {
-              "images": {
-                "paths": { "0": "/Products/soapWorks/soap/0/0.jpg" },
-                "alt": "some alt text for all images"
-              },
-              "name": "Hidrata Tudo",
-              "stock": 20,
-              "price": 10,
-              "off": false
-            },
-            "1": {
-              "images": {
-                "paths": { "0": "/Products/soapWorks/soap/1/0.jpg" },
-                "alt": "some alt text for all images"
-              },
-              "name": "Esfolia Sua Alma",
-              "stock": 3,
-              "price": 10,
-              "off": false
-            },
-            "2": {
-              "images": {
-                "paths": { "0": "/Products/soapWorks/soap/2/0.jpg" },
-                "alt": "some alt text for all images"
-              },
-              "name": "Hortelã Mentolado",
-              "stock": 20,
-              "price": 10,
-              "off": 50
-            },
-            "3": {
-              "images": {
-                "paths": { "0": "/Products/soapWorks/soap/3/0.jpg" },
-                "alt": "some alt text for all images"
-              },
-              "name": "Cacau com Chocolate",
-              "stock": 20,
-              "price": 10,
-              "off": false
+              "name": "Joblers",
+              "comment": "Produto Maravilhoso, nunca mais vou usar embalagens plásticas",
+              "rev": 4
             }
           }
         }
       },
-      "details": {
-        "bioCloths": {
-          "allSizes": {
-            "0": {
-              "about": "some text About",
-              "how": "some text how to use",
-              "ingredients": "some text about ingredients",
-              "review": "some text about review"
-            }
-          },
-          "medium": {
-            "0": {
-              "about": "some text About",
-              "how": "some text how to use",
-              "ingredients": "some text about ingredients",
-              "review": "some text about review"
-            }
-          },
-          "big": {
-            "0": {
-               "about": "some text About",
-              "how": "some text how to use",
-              "ingredients": "some text about ingredients",
-              "review": "some text about review"
-            }
-          }
-        },
-        "soapWorks": {
-          "ofuro": {
-            "0": {
-              "about": "some text About",
-              "how": "some text how to use",
-              "ingredients": "some text about ingredients",
-              "review": "some text about review"
-            }
-          },
-          "greenClay": {
-            "0": {
-              "about": "some text About",
-              "how": "some text how to use",
-              "ingredients": "some text about ingredients",
-              "review": "some text about review"
-            }
-          },
-          "shampooConditioner": {
-            "0": {
-              "about": "some text About",
-              "how": "some text how to use",
-              "ingredients": "some text about ingredients",
-              "review": "some text about review"
-            }
-          },
-          "soap": {
-            "0": {
-              "about": "some text About",
-              "how": "some text how to use",
-              "ingredients": "some text about ingredients",
-              "review": "some text about review"
-            },
-            "1": {
-              "about": "some text About",
-              "how": "some text how to use",
-              "ingredients": "some text about ingredients",
-              "review": "some text about review"
-            }
-          }
+      "medium": {
+        "0": {
+          "banner": "/Products/bioCloths/medium/0/banner.jpg",
+          "about": "some text About",
+          "how": "some text how to use",
+          "ingredients": "some text about ingredients",
+          "review": "some text about review"
+        }
+      },
+      "big": {
+        "0": {
+          "banner": "/Products/bioCloths/big/0/banner.jpg",
+          "about": "some text About",
+          "how": "some text how to use",
+          "ingredients": "some text about ingredients",
+          "review": "some text about review"
         }
       }
+    },
+    "soapWorks": {
+      "shampooConditioner": {
+        "0": {
+          "banner": "/Products/soapWorks/shampooConditioner/0/banner.jpg",
+          "about": "some text About",
+          "how": "some text how to use",
+          "ingredients": "some text about ingredients",
+          "review": "some text about review"
+        }
+      },
+      "soap": {
+        "0": {
+          "banner": "/Products/soapWorks/soap/0/banner.jpg",
+          "about": "some text About",
+          "how": "some text how to use",
+          "ingredients": "some text about ingredients",
+          "review": "some text about review"
+        },
+        "1": {
+          "banner": "/Products/soapWorks/soap/1/banner.jpg",
+          "about": "some text About",
+          "how": "some text how to use",
+          "ingredients": "some text about ingredients",
+          "review": "some text about review"
+        },
+        "2": {
+          "banner": "/Products/soapWorks/soap/2/banner.jpg",
+          "about": "some text About",
+          "how": "some text how to use",
+          "ingredients": "some text about ingredients",
+          "review": "some text about review"
+        },
+        "3": {
+          "banner": "/Products/soapWorks/soap/3/banner.jpg",
+          "about": "some text About",
+          "how": "some text how to use",
+          "ingredients": "some text about ingredients",
+          "review": "some text about review"
+        }
+      }
+    }
+  }
 }

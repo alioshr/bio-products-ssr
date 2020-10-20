@@ -60,7 +60,7 @@ const ProductPanel = ({ products, activeCatalog, activeCategory }) => {
       <Hr />
       <Prices price={p.price} off={p.off} />
       <IconPanel
-        path={`/product/${activeCatalog}?activeCategory=${activeCategory}&id=${p.id}`}
+        path={`/product/${activeCatalog}?activeCategory=${activeCategory}&id=${p.id}&name=${p.name}`}
       />
     </Product>
   ));
